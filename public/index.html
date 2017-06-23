@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <base href="/">
+  <title>Joe Calvillo</title>
+  <link rel="icon" href="img/favicon.ico">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="node_modules/angular/angular.min.js"></script>
+  <script src="node_modules/@uirouter/angularjs/release/angular-ui-router.min.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/controllers.js"></script>
+  <script src="js/constants.js"></script>
+  <script src="js/services.js"></script>
+</head>
+
+<body class="bgColor" ng-class="::getClass(class)" ng-app="site" ng-controller="AppCtrl">
+  <div data-ui-view="master"></div>
+</body>
+
+</html>

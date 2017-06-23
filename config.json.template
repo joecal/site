@@ -1,0 +1,15 @@
+{
+  "mailer": {
+    "host": "",
+    "port": ,
+    "secure": "",
+    "auth": {
+      "type": "",
+      "user": "",
+      "clientId": "",
+      "clientSecret": "",
+      "refreshToken": "",
+      "accessToken": ""
+    }
+  }
+}
