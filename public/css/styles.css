@@ -15,6 +15,10 @@
   box-sizing: border-box;
 }
 
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
 html {
   position: relative;
   overflow-y: scroll;
@@ -137,6 +141,7 @@ body:after, body:before {
   -o-border-radius: 50%;
   border-radius: 50%;
   box-shadow: 0.4em 0.4em 0.6em #ccc;
+  animation: fadein 5s;
 }
 
 #portrait #portraitContainer img {
@@ -151,6 +156,7 @@ body:after, body:before {
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+  animation: fadein 5s;
 }
 
 #links .imgContainer img {
