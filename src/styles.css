@@ -16,3 +16,12 @@
   list-style-type: none;
   box-sizing: border-box;
 }
+
+app-root {
+  height:100vh;
+  justify-content: center;
+}
+
+#appLinks.mat-grid-tile .mat-figure {
+  align-items: flex-start !important;
+}

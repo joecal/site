@@ -1,4 +1,4 @@
-<md-grid-list style="height:100vh;" fxFlex cols="10" rowHeight="fit">
+<md-grid-list id="gridList" (window:resize)="ngOnInit($event)" fxFlex="{{gridFlex}}" cols="10" rowHeight="fit">
 
   <md-grid-tile [colspan]="10" [rowspan]="1"></md-grid-tile>
 
@@ -6,15 +6,15 @@
 
   <md-grid-tile [colspan]="6" [rowspan]="4">
 
-    <app-portrait fxFlex.xl="50%" fxFlex.lg="40%" fxFlex.md="40%" fxFlex.sm="40%" fxFlex.xs="90%"></app-portrait>
+    <app-portrait fxFlex="{{fxFlex}}"></app-portrait>
 
   </md-grid-tile>
 
   <md-grid-tile [colspan]="2" [rowspan]="6"></md-grid-tile>
 
-  <md-grid-tile [colspan]="6" [rowspan]="2" fxLayout='row'>
+  <md-grid-tile id="appLinks" [colspan]="6" [rowspan]="2" fxLayout='row'>
 
-    <app-links fxFlexAlign="start" fxFlex.xl="50%" fxFlex.lg="40%" fxFlex.md="40%" fxFlex.sm="50%" fxFlex.xs="100%"></app-links>
+    <app-links fxFlex="{{fxFlex}}"></app-links>
 
   </md-grid-tile>
 
