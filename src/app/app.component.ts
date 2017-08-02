@@ -8,11 +8,11 @@ import { Meta, Title} from '@angular/platform-browser';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  gridFlex: number;
-  fxFlex: number;
   width: number;
   height: number;
   orientation: string;
+  gridFlex: number;
+  fxFlex: number;
 
   constructor(meta: Meta, title: Title, private change: ChangeDetectorRef) {
     title.setTitle('Joe Calvillo Portfolio');
@@ -22,12 +22,15 @@ export class AppComponent {
       { name: 'description', content: 'Joe Calvillo Portfolio'}
     ]);
   }
-  ngOnInit(event) {
+  ngOnInit() {
     this.change.markForCheck();
-    this.width = window.innerWidth || ~~event.target.innerWidth;
-    this.height = window.innerHeight || ~~event.target.innerHeight;
+    this.width = window.innerWidth;
+    this.height = window.innerHeight;
     this.orientation = this.width > this.height ? "landscape" : "portrait";
     this.gridFlex = ~~(this.height / 2);
-    this.fxFlex = this.orientation === "portrait" && this.height < 1000  ? ~~((this.width / this.height) * 140) : (this.orientation === "portrait" && this.height > 1000 ? ~~((this.width / this.height) * 90) : ~~((this.height / this.width) * 75));
+    this.fxFlex = this.orientation === "portrait" && this.height < 1000  ?
+      ~~((this.width / this.height) * 140) : (this.orientation === "portrait" &&
+      this.height > 1000 ? ~~((this.width / this.height) * 90) :
+      ~~((this.height / this.width) * 75));
   }
 }

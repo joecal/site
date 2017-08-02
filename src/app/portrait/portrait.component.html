@@ -1,3 +1,6 @@
-<div id="portrait">
+<div id="portrait" #portrait
+  [@growShrink]="portrait.state"
+  (mouseenter)="toggleState(portrait)"
+  (mouseleave)="toggleState(portrait)">
   <img src="../../assets/me.jpg">
 </div>

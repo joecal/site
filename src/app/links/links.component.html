@@ -1,11 +1,24 @@
 <div id="links">
-  <div class='imgContainer' fxFlex="auto" fxFlexAlign="center">
-    <a href="https://github.com/joecal"><img src="../../assets/github.png" id="github"></a>
+  <div fxFlex="auto" fxFlexAlign="center">
+    <a href="https://github.com/joecal">
+      <img src="../../assets/github.png"
+        #github [@growShrink]="github.state"
+        (mouseenter)="toggleState(github)"
+        (mouseleave)="toggleState(github)">
+    </a>
   </div>
-  <div class='imgContainer' fxFlex="auto" fxFlexAlign="center">
-    <a href="https://linkedin.com/in/joecalvillo"><img src="../../assets/linkedin.png" id="linkedin"></a>
+  <div fxFlex="auto" fxFlexAlign="center">
+    <a href="https://linkedin.com/in/joecalvillo">
+      <img src="../../assets/linkedin.png"
+        #linkedin [@growShrink]="linkedin.state"
+        (mouseenter)="toggleState(linkedin)"
+        (mouseleave)="toggleState(linkedin)">
+    </a>
   </div>
-  <div class='imgContainer' fxFlex="auto" fxFlexAlign="center">
-    <img src="../../assets/mail.png" id="mail">
+  <div fxFlex="auto" fxFlexAlign="center">
+    <img src="../../assets/mail.png"
+      #mail [@growShrink]="mail.state"
+      (mouseenter)="toggleState(mail)"
+      (mouseleave)="toggleState(mail)">
   </div>
 </div>

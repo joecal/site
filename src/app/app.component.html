@@ -1,23 +1,23 @@
-<md-grid-list id="gridList" (window:resize)="ngOnInit($event)" fxFlex="{{gridFlex}}" cols="10" rowHeight="fit">
+<md-grid-list (window:resize)="ngOnInit()" fxFlex="{{gridFlex}}" cols="10" rowHeight="fit">
 
-  <md-grid-tile [colspan]="10" [rowspan]="1"></md-grid-tile>
+  <md-grid-tile style="border:1px solid black;" [colspan]="10" [rowspan]="1"></md-grid-tile>
 
-  <md-grid-tile [colspan]="2" [rowspan]="6"></md-grid-tile>
+  <md-grid-tile style="border:1px solid black;" [colspan]="2" [rowspan]="6"></md-grid-tile>
 
-  <md-grid-tile [colspan]="6" [rowspan]="4">
+  <md-grid-tile style="border:1px solid black;" [colspan]="6" [rowspan]="4">
 
     <app-portrait fxFlex="{{fxFlex}}"></app-portrait>
 
   </md-grid-tile>
 
-  <md-grid-tile [colspan]="2" [rowspan]="6"></md-grid-tile>
+  <md-grid-tile style="border:1px solid black;" [colspan]="2" [rowspan]="6"></md-grid-tile>
 
-  <md-grid-tile id="appLinks" [colspan]="6" [rowspan]="2" fxLayout='row'>
+  <md-grid-tile style="border:1px solid black;" id="appLinks" [colspan]="6" [rowspan]="2" fxLayout='row'>
 
     <app-links fxFlex="{{fxFlex}}"></app-links>
 
   </md-grid-tile>
 
-  <md-grid-tile [colspan]="10" [rowspan]="1"></md-grid-tile>
+  <md-grid-tile style="border:1px solid black;" [colspan]="10" [rowspan]="1"></md-grid-tile>
 
 </md-grid-list>
