@@ -18,6 +18,7 @@
   <div fxFlex="auto" fxFlexAlign="center">
     <img src="../../assets/mail.png"
       #mail [@growShrink]="mail.state"
+      (click)="mailBool(true)"
       (mouseenter)="toggleState(mail)"
       (mouseleave)="toggleState(mail)">
   </div>

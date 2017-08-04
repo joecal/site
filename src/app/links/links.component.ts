@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { growShrink } from '../grow.shrink';
 
 @Component({
@@ -8,9 +8,15 @@ import { growShrink } from '../grow.shrink';
   animations: [ growShrink ]
 })
 export class LinksComponent {
+
+  @Output() onMailClicked = new EventEmitter();
+
   toggleState(target) {
     target['state'] = target['state'] === undefined ||
       target['state'] === 'small' ? target['state'] = 'large' :
       target['state'] = 'small';
+  }
+  mailBool() {
+    this.onMailClicked.emit()
   }
 }
