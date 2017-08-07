@@ -17,10 +17,11 @@
   box-sizing: border-box;
 }
 
-app-root {
-  justify-content: center;
+::-webkit-scrollbar {
+  display: none;
 }
 
-#appLinks.mat-grid-tile .mat-figure {
-  align-items: flex-start !important;
+app-root {
+  height: 500vh;
+  justify-content: center;
 }

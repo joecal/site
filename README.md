@@ -1,1 +1,3 @@
 # https://joecal.herokuapp.com
+
+### Angular 4 re-design under construction...

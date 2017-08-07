@@ -1,29 +1,23 @@
-<md-grid-list [style.height]="gridHeight" (window:resize)="ngOnInit()" fxFlex="{{gridFlex}}" cols="10" rowHeight="fit">
+<md-grid-list [style.font-size]="fontSize" (window:resize)="ngOnInit()" fxFlex="{{gridFlex}}" cols="10" rowHeight="fit">
 
-  <md-grid-tile style="border:1px solid black;" [colspan]="10" [rowspan]="1"></md-grid-tile>
-
-  <md-grid-tile style="border:1px solid black;" [colspan]="2" [rowspan]="6"></md-grid-tile>
-
-  <md-grid-tile style="border:1px solid black;" [colspan]="6" [rowspan]="4">
-
-    <app-portrait fxFlex="{{fxFlex}}"></app-portrait>
-
+  <md-grid-tile style="border:1px solid black;" [colspan]="10" [rowspan]="2">
+    <app-home fxFlexFill></app-home>
   </md-grid-tile>
 
-  <md-grid-tile style="border:1px solid black;" [colspan]="2" [rowspan]="6"></md-grid-tile>
-
-  <md-grid-tile style="border:1px solid black;" id="appLinks" [colspan]="6" [rowspan]="2" fxLayout='row'>
-
-    <app-links (onMailClicked)="toggleMail()" fxFlex="{{fxFlex}}"></app-links>
-
+  <md-grid-tile style="border:1px solid black;" [colspan]="10" [rowspan]="2">
+    <app-about fxFlexFill></app-about>
   </md-grid-tile>
 
-  <md-grid-tile *ngIf="!mail" style="border:1px solid black;" [colspan]="10" [rowspan]="1"></md-grid-tile>
+  <md-grid-tile style="border:1px solid black;" [colspan]="10" [rowspan]="2">
+    <app-skills fxFlexFill></app-skills>
+  </md-grid-tile>
 
-  <md-grid-tile *ngIf="mail" style="border:1px solid black;" [colspan]="10" [rowspan]="5">
+  <md-grid-tile style="border:1px solid black;" [colspan]="10" [rowspan]="2">
+    <app-work fxFlexFill></app-work>
+  </md-grid-tile>
 
-    <app-mail fxFlex="{{fxFlex}}"></app-mail>
-
+  <md-grid-tile style="border:1px solid black;" [colspan]="10" [rowspan]="2">
+    <app-contact fxFlexFill></app-contact>
   </md-grid-tile>
 
 </md-grid-list>

@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { growShrink } from '../grow.shrink';
 
 @Component({
@@ -8,6 +8,7 @@ import { growShrink } from '../grow.shrink';
   animations: [ growShrink ]
 })
 export class PortraitComponent {
+  @Input() flex: number;
   toggleState(target) {
     target['state'] = target['state'] === undefined ||
       target['state'] === 'small' ? target['state'] = 'large' :
