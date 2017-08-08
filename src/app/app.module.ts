@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { MdButtonModule, MdIconModule, MdGridListModule, MdListModule, MdCardModule, MdInputModule } from '@angular/material';
+import { Ng2PageScrollModule } from 'ng2-page-scroll';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -41,7 +42,8 @@ import { SkillsComponent } from './skills/skills.component';
     MdGridListModule,
     MdListModule,
     MdCardModule,
-    MdInputModule
+    MdInputModule,
+    Ng2PageScrollModule
   ],
   providers: [],
   bootstrap: [AppComponent]

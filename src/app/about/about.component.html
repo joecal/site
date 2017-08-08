@@ -1,9 +1,9 @@
-<div fxFlexFill style="border:1px solid red;">
-  <div style="border:1px solid black;" fxLayout="row" fxLayoutAlign="flex-start">
-    <h1 style="border:1px solid black;">About</h1>
+<div fxFlexFill>
+  <div fxLayout="row" fxLayoutAlign="flex-start">
+    <h1 id="about">About</h1>
   </div>
-  <div fxFlexFill style="border:1px solid blue;" fxLayout="column" fxLayoutAlign="center center">
-    <app-portrait fxLayoutAlign="center center"></app-portrait>
-    <h1 style="border:1px solid black;">About Content</h1>
+  <div fxFlexFill fxLayout="column" fxLayoutAlign="flex-start center">
+    <app-portrait [flex]="fxFlex" fxLayoutAlign="center center"></app-portrait>
+    <p>I have a passion for transforming web content ideas and concepts into valuable, tangible results. Eager to apply my front-end, back-end, and team skills to solve problems and enhance the user experience. Continuously learning new and existing technologies and techniques to maintain high quality programming performance.</p>
   </div>
 </div>

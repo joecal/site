@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, ChangeDetectionStrategy, HostListener } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ChangeDetectionStrategy, ViewChildren, ElementRef, HostListener } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Meta, Title} from '@angular/platform-browser';
 
@@ -15,6 +15,10 @@ export class AppComponent {
   orientation: string;
   gridFlex: number;
   fxFlex: number;
+  homeOpacity:number;
+  aboutOpacity:number;
+  skillsOpacity:number;
+  workOpacity:number;
 
   constructor(meta: Meta, title: Title, private change: ChangeDetectorRef) {
     title.setTitle('Joe Calvillo Portfolio');
@@ -24,17 +28,47 @@ export class AppComponent {
       { name: 'description', content: 'Joe Calvillo Portfolio'}
     ]);
   }
+
   ngOnInit() {
     this.change.markForCheck();
     this.width = window.innerWidth;
     this.height = window.innerHeight;
     this.gridFlex = ~~(this.height / 2);
-    this.fontSize = ~~(this.height / 160) + 'em';
     this.orientation = this.width > this.height ? "landscape" : "portrait";
-    this.fxFlex = this.orientation === "portrait" && this.height < 1000 ?
-      ~~((this.width / this.height) * 140) : (this.orientation === "portrait" &&
-      this.height > 1000 ? ~~((this.width / this.height) * 90) :
-      ~~((this.height / this.width) * 75));
+
+    this.fontSize = this.orientation === "portrait" && this.height < 1000 ?
+      ((this.width / this.height) * 3.5) + 'em' :(this.orientation === "portrait" &&
+      this.height > 1000 ? ~~((this.width / this.height) * 6) + 'em' :
+      this.orientation === "landscape" && this.width < 1000 ?
+      ((this.height / this.width) * 4) + 'em' : this.orientation === "landscape" &&
+      this.width > 1000 ? ((this.height / this.width) * 7) + 'em' : null);
+
+    this.fxFlex = this.orientation === "portrait" ?
+      ~~((this.width / this.height) * 90) : (this.orientation === "landscape" &&
+      this.width < 1000 ? ~~((this.height / this.width) * 50) :
+      this.orientation === "landscape" && this.width > 1000 ?
+      ~~((this.height / this.width) * 100) : null);
+  }
+
+  @ViewChildren('home,about,skills,work') children: ElementRef;
+  @HostListener("window:scroll", [])
+
+  onWindowWheel() {
+    let childrenList = this.children['_results']
+    let home = childrenList[0]['_element'].nativeElement;
+    let about = childrenList[1]['_element'].nativeElement;
+    let skills = childrenList[2]['_element'].nativeElement;
+    let work = childrenList[3]['_element'].nativeElement;
+    let height = window.innerHeight;
+    let scrollTop = window.pageYOffset !== undefined ? window.pageYOffset :
+      document.documentElement.scrollTop || document.body.scrollTop;
+
+    height = height / 3;
+
+    this.homeOpacity = (height - scrollTop) / height;
+    this.aboutOpacity = (height - (scrollTop - about.offsetTop)) / height;
+    this.skillsOpacity = (height - (scrollTop - skills.offsetTop)) / height;
+    this.workOpacity = (height - (scrollTop - work.offsetTop)) / height;
   }
   // @HostListener("window:wheel", ["$event"])
   // onWindowWheel(event) {
@@ -46,24 +80,8 @@ export class AppComponent {
     //   this.scrollingUp === true && this.up < 0 && this.down > 0 ?
     //   (this.up++, this.down--) : null;
 
-    // if(this.scrollingDown === true) {
-    //   if(this.fade <= 1.05 && this.fade >= -0.05) {
-    //     this.fade -= 0.05;
-    //   }
-    //   console.log(this.fade)
-    // }
-    // if(this.scrollingUp === true) {
-    //   if(this.fade <= 1 && this.fade >= -0.06) {
-    //     this.fade += 0.05;
-    //   }
-    //   console.log(this.fade)
-    // }
-    // this.fade = this.scrollingDown === true && this.fade <= 1 && this.fade >= 0 ? this.fade -= 0.05 : this.scrollingUp === true && this.fade <= 1 && this.fade >= 0 ? this.fade += 0.05 : null;
-    // console.log(this.fade)
-
     // this.moveUp = 'translateY(' + -(this.down * 4) + 'px)';
     // this.moveLeft = 'translateX(' + -(this.down * 4) + 'px)';
     // this.moveRight = 'translateX(' + (this.down * 4) + 'px)';
   // }
-
 }

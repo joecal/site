@@ -1,22 +1,22 @@
 <md-grid-list [style.font-size]="fontSize" (window:resize)="ngOnInit()" fxFlex="{{gridFlex}}" cols="10" rowHeight="fit">
 
-  <md-grid-tile style="border:1px solid black;" [colspan]="10" [rowspan]="2">
+  <md-grid-tile #home [style.opacity]="homeOpacity" [colspan]="10" [rowspan]="2">
     <app-home fxFlexFill></app-home>
   </md-grid-tile>
 
-  <md-grid-tile style="border:1px solid black;" [colspan]="10" [rowspan]="2">
-    <app-about fxFlexFill></app-about>
+  <md-grid-tile #about [style.opacity]="aboutOpacity" [colspan]="10" [rowspan]="2">
+    <app-about [flex]="fxFlex" fxFlexFill></app-about>
   </md-grid-tile>
 
-  <md-grid-tile style="border:1px solid black;" [colspan]="10" [rowspan]="2">
+  <md-grid-tile #skills [style.opacity]="skillsOpacity" [colspan]="10" [rowspan]="2">
     <app-skills fxFlexFill></app-skills>
   </md-grid-tile>
 
-  <md-grid-tile style="border:1px solid black;" [colspan]="10" [rowspan]="2">
+  <md-grid-tile #work [style.opacity]="workOpacity" [colspan]="10" [rowspan]="2">
     <app-work fxFlexFill></app-work>
   </md-grid-tile>
 
-  <md-grid-tile style="border:1px solid black;" [colspan]="10" [rowspan]="2">
+  <md-grid-tile [colspan]="10" [rowspan]="2">
     <app-contact fxFlexFill></app-contact>
   </md-grid-tile>
 

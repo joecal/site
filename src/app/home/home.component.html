@@ -1,15 +1,43 @@
-<div fxFlexFill style="border:1px solid red;" fxLayout="column" fxLayoutAlign="space-between">
-  <div style="border:1px solid black;" fxLayout="row" fxLayoutAlign="space-around">
-    <h1 style="border:1px solid black;">About</h1>
-    <h1 style="border:1px solid black;">Skills</h1>
+<div fxFlexFill fxLayout="column" fxLayoutAlign="space-between">
+  <div fxLayout="row" fxLayoutAlign="space-around">
+    <a pageScroll href="#about">
+      <h1 #about [@growShrink]="about.state"
+        (mouseenter)="growShrink(about)"
+        (mouseleave)="growShrink(about)">
+        About
+      </h1>
+    </a>
+    <a pageScroll href="#skills">
+      <h1 #skills [@growShrink]="skills.state"
+        (mouseenter)="growShrink(skills)"
+        (mouseleave)="growShrink(skills)">
+        Skills
+      </h1>
+    </a>
   </div>
 
-  <div style="border:1px solid black;" fxLayout="row" fxLayoutAlign="center">
-    <h1 style="border:1px solid black;">Joe Calvillo : Developer</h1>
+  <div fxLayout="row" fxLayoutAlign="center">
+    <h1 #jc [@growShrink]="jc.state"
+      (mouseenter)="growShrink(jc)"
+      (mouseleave)="growShrink(jc)">
+      Joe Calvillo : Developer
+    </h1>
   </div>
 
-  <div style="border:1px solid black;" fxLayout="row" fxLayoutAlign="space-around">
-    <h1 style="border:1px solid black;">Work</h1>
-    <h1 style="border:1px solid black;">Contact</h1>
+  <div fxLayout="row" fxLayoutAlign="space-around">
+    <a pageScroll href="#work">
+      <h1 #work [@growShrink]="work.state"
+        (mouseenter)="growShrink(work)"
+        (mouseleave)="growShrink(work)">
+        Work
+      </h1>
+    </a>
+    <a pageScroll href="#contact">
+      <h1 #contact [@growShrink]="contact.state"
+        (mouseenter)="growShrink(contact)"
+        (mouseleave)="growShrink(contact)">
+        Contact
+      </h1>
+    </a>
   </div>
 </div>

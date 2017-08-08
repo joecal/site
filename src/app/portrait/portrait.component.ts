@@ -8,8 +8,8 @@ import { growShrink } from '../grow.shrink';
   animations: [ growShrink ]
 })
 export class PortraitComponent {
-  @Input() flex: number;
-  toggleState(target) {
+  @Input('flex') fxFlex: number;
+  growShrink(target) {
     target['state'] = target['state'] === undefined ||
       target['state'] === 'small' ? target['state'] = 'large' :
       target['state'] = 'small';

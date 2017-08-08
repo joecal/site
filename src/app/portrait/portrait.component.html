@@ -1,6 +1,6 @@
-<div fxFlex="{{flex}}" id="portrait" #portrait
+<div fxFlex="{{fxFlex}}" id="portrait" #portrait
   [@growShrink]="portrait.state"
-  (mouseenter)="toggleState(portrait)"
-  (mouseleave)="toggleState(portrait)">
+  (mouseenter)="growShrink(portrait)"
+  (mouseleave)="growShrink(portrait)">
   <img src="../../assets/me.jpg">
 </div>
