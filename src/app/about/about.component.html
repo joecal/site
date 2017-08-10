@@ -2,8 +2,15 @@
   <div fxLayout="row" fxLayoutAlign="flex-start">
     <h1 id="about">About</h1>
   </div>
-  <div fxFlexFill fxLayout="column" fxLayoutAlign="flex-start center">
+  <div fxLayout="column" fxLayoutAlign="flex-start center">
     <app-portrait [flex]="fxFlex" fxLayoutAlign="center center"></app-portrait>
-    <p>I have a passion for transforming web content ideas and concepts into valuable, tangible results. Eager to apply my front-end, back-end, and team skills to solve problems and enhance the user experience. Continuously learning new and existing technologies and techniques to maintain high quality programming performance.</p>
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <p class="{{fontClass}}" fxFlex="{{pFlex}}">
+        I have a passion for transforming web content ideas and concepts into valuable,
+        tangible results. Eager to apply my front-end, back-end, and team skills to solve
+        problems and enhance the user experience. Continuously learning new and existing
+        technologies and techniques to maintain high quality programming performance.
+      </p>
+    </div>
   </div>
 </div>

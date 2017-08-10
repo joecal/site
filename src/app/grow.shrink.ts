@@ -6,6 +6,7 @@ export const growShrink = trigger('growShrink', [
   })),
   state('large', style({
     transform: 'scale(1.1)',
+    "text-shadow": '0 5px 10px #ccc'
   })),
   transition('* => *', animate('200ms ease-in-out'))
 ]);

@@ -1,8 +1,10 @@
-<div fxFlexFill style="border:1px solid red;">
-  <div style="border:1px solid black;" fxLayout="row" fxLayoutAlign="flex-end">
-    <h1 style="border:1px solid black;" id="skills">Skills</h1>
+<div fxFlexFill>
+  <div fxLayout="row" style="border:2px solid red" fxLayoutAlign="flex-end">
+    <h1 id="skills" style="border:3px solid yellow">Skills</h1>
   </div>
-  <div fxFlexFill style="border:1px solid black;" fxLayout="row" fxLayoutAlign="center center">
-    <h1 style="border:1px solid black;">Skills Content</h1>
+  <div fxFlexFill style="border:5px solid green" fxLayout="row" fxLayoutAlign="center center">
+    <div id="iconContainer" style="border:5px solid pink" fxFlex="{{iconContainerFlex}}" fxLayout="row" fxLayoutAlign="center center" fxLayoutWrap>
+      <i *ngFor="let icon of icons" style="border:1px solid black" class="{{icon}}" [style.font-size.em]="iconFontSize"></i>
+    </div>
   </div>
 </div>

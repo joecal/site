@@ -1,4 +1,4 @@
-<md-grid-list [style.font-size]="fontSize" (window:resize)="ngOnInit()" fxFlex="{{gridFlex}}" cols="10" rowHeight="fit">
+<md-grid-list class="{{fontClass}}" fxFlex="{{gridFlex}}" cols="10" rowHeight="fit">
 
   <md-grid-tile #home [style.opacity]="homeOpacity" [colspan]="10" [rowspan]="2">
     <app-home fxFlexFill></app-home>
@@ -9,14 +9,14 @@
   </md-grid-tile>
 
   <md-grid-tile #skills [style.opacity]="skillsOpacity" [colspan]="10" [rowspan]="2">
-    <app-skills fxFlexFill></app-skills>
+    <app-skills [flex]="fxFlex" fxFlexFill></app-skills>
   </md-grid-tile>
 
   <md-grid-tile #work [style.opacity]="workOpacity" [colspan]="10" [rowspan]="2">
     <app-work fxFlexFill></app-work>
   </md-grid-tile>
 
-  <md-grid-tile [colspan]="10" [rowspan]="2">
+  <md-grid-tile #contact [style.opacity]="contactOpacity" [colspan]="10" [rowspan]="2">
     <app-contact fxFlexFill></app-contact>
   </md-grid-tile>
 
