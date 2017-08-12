@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChildren, ElementRef, HostListener } from '@angular/core';
+import { Component, OnInit, Input, ViewChildren, ElementRef, HostListener } from '@angular/core';
 import { Meta, Title} from '@angular/platform-browser';
 
 @Component({
@@ -96,18 +96,4 @@ export class AppComponent {
     var top = element.offsetTop;
     return (top < (window.pageYOffset + window.innerHeight));
   }
-  // @HostListener("window:wheel", ["$event"])
-  // onWindowWheel(event) {
-  //   event.deltaY > 0 ? (this.scrollingDown = true, this.scrollingUp = false) :
-  //     (this.scrollingUp = true, this.scrollingDown = false);
-
-    // this.scrollingDown === true && this.down < window.innerWidth &&
-    //   this.up > -window.innerWidth ? (this.down++, this.up--) :
-    //   this.scrollingUp === true && this.up < 0 && this.down > 0 ?
-    //   (this.up++, this.down--) : null;
-
-    // this.moveUp = 'translateY(' + -(this.down * 4) + 'px)';
-    // this.moveLeft = 'translateX(' + -(this.down * 4) + 'px)';
-    // this.moveRight = 'translateX(' + (this.down * 4) + 'px)';
-  // }
 }

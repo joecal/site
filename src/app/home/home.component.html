@@ -1,16 +1,12 @@
 <div fxFlexFill fxLayout="column" fxLayoutAlign="space-between">
   <div fxLayout="row" fxLayoutAlign="space-around">
     <a pageScroll href="#about">
-      <h1 #about [@growShrink]="about.state"
-        (mouseenter)="growShrink(about)"
-        (mouseleave)="growShrink(about)">
+      <h1 #about [@growShrink]="about.state" growShrinkState>
         About
       </h1>
     </a>
     <a pageScroll href="#skills">
-      <h1 #skills [@growShrink]="skills.state"
-        (mouseenter)="growShrink(skills)"
-        (mouseleave)="growShrink(skills)">
+      <h1 #skills [@growShrink]="skills.state" growShrinkState>
         Skills
       </h1>
     </a>
@@ -24,16 +20,12 @@
 
   <div fxLayout="row" fxLayoutAlign="space-around">
     <a pageScroll href="#work">
-      <h1 #work [@growShrink]="work.state"
-        (mouseenter)="growShrink(work)"
-        (mouseleave)="growShrink(work)">
+      <h1 #work [@growShrink]="work.state" growShrinkState>
         Work
       </h1>
     </a>
     <a pageScroll href="#contact">
-      <h1 #contact [@growShrink]="contact.state"
-        (mouseenter)="growShrink(contact)"
-        (mouseleave)="growShrink(contact)">
+      <h1 #contact [@growShrink]="contact.state" growShrinkState>
         Contact
       </h1>
     </a>

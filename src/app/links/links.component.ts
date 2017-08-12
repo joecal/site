@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-import { growShrink } from '../grow.shrink';
+import { growShrink } from '../shared/grow.shrink';
 
 @Component({
   selector: 'app-links',

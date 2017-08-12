@@ -1,11 +1,12 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { AppRoutingModule } from './app-routing.module';
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { MdButtonModule, MdIconModule, MdGridListModule, MdListModule, MdCardModule, MdInputModule } from '@angular/material';
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
+import { SharedModule } from './shared/shared.module';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PortraitComponent } from './portrait/portrait.component';
 import { LinksComponent } from './links/links.component';
@@ -43,7 +44,8 @@ import { SkillsComponent } from './skills/skills.component';
     MdListModule,
     MdCardModule,
     MdInputModule,
-    Ng2PageScrollModule
+    Ng2PageScrollModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

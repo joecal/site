@@ -2,7 +2,7 @@
   <div fxLayout="row" fxLayoutAlign="flex-start">
     <h1 id="about">About</h1>
   </div>
-  <div fxLayout="column" fxLayoutAlign="flex-start center">
+  <div fxFlexFill fxLayout="column" fxLayoutAlign="{{flexLA}} center">
     <app-portrait [flex]="fxFlex" fxLayoutAlign="center center"></app-portrait>
     <div fxLayout="row" fxLayoutAlign="center center">
       <p class="{{fontClass}}" fxFlex="{{pFlex}}">

@@ -1,13 +1,16 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
+import { growShrink } from '../shared/grow.shrink';
 
 @Component({
   selector: 'app-skills',
   templateUrl: './skills.component.html',
-  styleUrls: ['./skills.component.css']
+  styleUrls: ['./skills.component.css'],
+  animations: [ growShrink ]
 })
 export class SkillsComponent {
+  iconContainerPad:string;
   iconContainerFlex:number;
-  iconFontSize:number;
+  iconFontSize:string;
 
   icons:any = [
     "devicon-angularjs-plain-wordmark",
@@ -60,25 +63,10 @@ export class SkillsComponent {
     let height = window.innerHeight;
     let orientation = width > height ? "landscape" : "portrait";
 
-    this.icons = this.icons;
-    this.fxFlex = this.fxFlex;
-
-    // this.iconContainerFlex = orientation === "portrait" && height < 1000 ? width:
-    //   orientation === "portrait" && height > 1000 ? this.fxFlex :
-    //   orientation === "landscape" && width < 1000 ? this.fxFlex * 3 :
-    //   orientation === "landscape" && width > 1000 ? this.fxFlex : null;
     this.iconContainerFlex = width;
 
-    console.log("c: ",this.iconContainerFlex)
+    this.iconContainerPad = orientation === "landscape" ? "1em" : "2em";
 
-    this.iconFontSize = orientation === "portrait" && height < 1000 ?
-      1.38 : (orientation === "portrait" && height > 1000 ?
-      1.5 : orientation === "landscape" && width < 500 ?
-      1.6 : orientation === "landscape" && width < 1000 ?
-      0.80 : orientation === "landscape" && width > 1000 ?
-      1.5 : null);
-
-    console.log("f: ",this.iconFontSize)
+    this.iconFontSize = orientation === "landscape" ? "12.5vh" : "12.5vw";
   }
-
 }

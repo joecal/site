@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { growShrink } from '../grow.shrink';
+import { Component, Input, ElementRef, HostListener} from '@angular/core';
+import { growShrink } from '../shared/grow.shrink';
 
 @Component({
   selector: 'app-portrait',
@@ -9,9 +9,4 @@ import { growShrink } from '../grow.shrink';
 })
 export class PortraitComponent {
   @Input('flex') fxFlex: number;
-  growShrink(target) {
-    target['state'] = target['state'] === undefined ||
-      target['state'] === 'small' ? target['state'] = 'large' :
-      target['state'] = 'small';
-  }
 }

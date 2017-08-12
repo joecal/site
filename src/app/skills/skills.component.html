@@ -1,10 +1,15 @@
 <div fxFlexFill>
-  <div fxLayout="row" style="border:2px solid red" fxLayoutAlign="flex-end">
-    <h1 id="skills" style="border:3px solid yellow">Skills</h1>
+  <div fxLayout="row" style="border-bottom:1px solid black" fxLayoutAlign="flex-end">
+    <h1 id="skills" >Skills</h1>
   </div>
-  <div fxFlexFill style="border:5px solid green" fxLayout="row" fxLayoutAlign="center center">
-    <div id="iconContainer" style="border:5px solid pink" fxFlex="{{iconContainerFlex}}" fxLayout="row" fxLayoutAlign="center center" fxLayoutWrap>
-      <i *ngFor="let icon of icons" style="border:1px solid black" class="{{icon}}" [style.font-size.em]="iconFontSize"></i>
+  <div fxFlexFill #iconContainer fxLayout="column" fxLayoutAlign="center center">
+    <div fxLayout="column">
+      <div id="iconContainer" [style.padding-bottom]="iconContainerPad"
+        fxFlex="{{iconContainerFlex}}" fxLayout="row" fxLayoutAlign="center center" fxLayoutWrap>
+        <i *ngFor="let icon of icons" class="{{icon}}" [style.font-size]="iconFontSize" #iconEl
+          [@growShrink]="iconEl.state" growShrinkState>
+        </i>
+      </div>
     </div>
   </div>
 </div>
