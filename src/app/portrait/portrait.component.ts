@@ -1,4 +1,4 @@
-import { Component, Input, ElementRef, HostListener} from '@angular/core';
+import { Component } from '@angular/core';
 import { growShrink } from '../shared/grow.shrink';
 
 @Component({
@@ -8,5 +8,8 @@ import { growShrink } from '../shared/grow.shrink';
   animations: [ growShrink ]
 })
 export class PortraitComponent {
-  @Input('flex') fxFlex: number;
+  portraitMaxWidth:string;
+  getValue(event) {
+    this.portraitMaxWidth = event.portraitMaxWidth
+  }
 }

@@ -1,6 +1,6 @@
-<div fxFlexFill>
+<div fxFlexFill onWindowResize (onWindowResizeEvent)="getValue($event)">
   <div fxLayout="row" fxLayoutAlign="flex-start">
-    <h1 id="work">Work</h1>
+    <h1 id="work" [style.font-size]="h1HeaderFontSize">Work</h1>
   </div>
   <div fxFlexFill fxLayout="column" fxLayoutAlign="center center">
     <h1>Work Content</h1>

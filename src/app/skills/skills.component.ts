@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, HostListener } from '@angular/core';
+import { Component } from '@angular/core';
 import { growShrink } from '../shared/grow.shrink';
 
 @Component({
@@ -8,8 +8,8 @@ import { growShrink } from '../shared/grow.shrink';
   animations: [ growShrink ]
 })
 export class SkillsComponent {
+  h1HeaderFontSize:string;
   iconContainerPad:string;
-  iconContainerFlex:number;
   iconFontSize:string;
 
   icons:any = [
@@ -50,23 +50,9 @@ export class SkillsComponent {
     "devicon-ubuntu-plain-wordmark"
   ];
 
-  ngOnInit() {
-    this.onWindowResize();
-  }
-
-  @Input('flex') fxFlex:number;
-
-  @HostListener("window:resize", [])
-
-  onWindowResize() {
-    let width = window.innerWidth;
-    let height = window.innerHeight;
-    let orientation = width > height ? "landscape" : "portrait";
-
-    this.iconContainerFlex = width;
-
-    this.iconContainerPad = orientation === "landscape" ? "1em" : "2em";
-
-    this.iconFontSize = orientation === "landscape" ? "12.5vh" : "12.5vw";
+  getValue(event) {
+    this.h1HeaderFontSize = event.h1HeaderFontSize;
+    this.iconContainerPad = event.iconContainerPad;
+    this.iconFontSize = event.iconFontSize;
   }
 }

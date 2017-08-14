@@ -26,12 +26,3 @@ app-root {
   height: 500vh;
   justify-content: center;
 }
-
-h1 {
-  margin: 0.2em;
-}
-
-.devicon-angularjs-plain-wordmark {
-  /*max-width: 2em;*/
-  fill: black;
-}

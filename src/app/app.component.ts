@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChildren, ElementRef, HostListener } from '@angular/core';
+import { Component, ViewChildren, ElementRef, HostListener } from '@angular/core';
 import { Meta, Title} from '@angular/platform-browser';
 
 @Component({
@@ -7,9 +7,6 @@ import { Meta, Title} from '@angular/platform-browser';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  fontClass:string;
-  gridFlex: number;
-  fxFlex: number;
   homeOpacity:number;
   aboutOpacity:number;
   skillsOpacity:number;
@@ -23,33 +20,6 @@ export class AppComponent {
       { name: 'keywords', content: 'Joe Calvillo Portfolio'},
       { name: 'description', content: 'Joe Calvillo Portfolio'}
     ]);
-  }
-
-  ngOnInit() {
-    this.onWindowResize()
-  }
-
-  @HostListener("window:resize", [])
-
-  onWindowResize() {
-    let width = window.innerWidth;
-    let height = window.innerHeight;
-    let orientation = width > height ? "landscape" : "portrait";
-
-    this.gridFlex = ~~(height / 2);
-
-    this.fontClass = orientation === "portrait" && height < 1000 ?
-      "mat-display-1" : (orientation === "portrait" && height > 1000 ?
-      "mat-display-2" : orientation === "landscape" && width < 500 ?
-      "mat-headline" : orientation === "landscape" && width < 1000 ?
-      "mat-display-2" : orientation === "landscape" && width > 1000 ?
-      "mat-display-3" : null);
-
-    this.fxFlex = orientation === "portrait" ?
-      ~~((width / height) * 90) : (orientation === "landscape" &&
-      width < 1000 ? ~~((height / width) * 50) :
-      orientation === "landscape" && width > 1000 ?
-      ~~((height / width) * 100) : null);
   }
 
   @ViewChildren('home,about,skills,work,contact') children: ElementRef;
@@ -67,7 +37,7 @@ export class AppComponent {
 
   @HostListener("window:scroll", [])
 
-  onWindowWheel() {
+  onWindowScroll() {
     let height = window.innerHeight;
     let width = window.innerWidth;
     let scrollTop = window.pageYOffset !== undefined ? window.pageYOffset :
@@ -93,7 +63,7 @@ export class AppComponent {
   }
 
   inView(element) {
-    var top = element.offsetTop;
+    let top = element.offsetTop;
     return (top < (window.pageYOffset + window.innerHeight));
   }
 }

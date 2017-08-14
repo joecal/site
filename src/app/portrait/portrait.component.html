@@ -1,4 +1,4 @@
-<div fxFlex="{{fxFlex}}" id="portrait" #portrait
+<div onWindowResize (onWindowResizeEvent)="getValue($event)" [style.max-width]="portraitMaxWidth" id="portrait" #portrait
   [@growShrink]="portrait.state" growShrinkState>
   <img src="../../assets/me.jpg">
 </div>
