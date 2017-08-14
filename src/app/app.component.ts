@@ -38,6 +38,19 @@ export class AppComponent {
   @HostListener("window:scroll", [])
 
   onWindowScroll() {
+    this.homeOpacity = this.setOpacity(null,"home");
+    this.aboutOpacity = this.setOpacity("skills","about");
+    this.skillsOpacity = this.setOpacity("work","skills");
+    this.workOpacity = this.setOpacity("contact","work");
+    this.contactOpacity = this.setOpacity(null,"contact");
+  }
+
+  inView(element) {
+    let top = element.offsetTop;
+    return (top < (window.pageYOffset + window.innerHeight));
+  }
+
+  setOpacity(element1,element2) {
     let height = window.innerHeight;
     let width = window.innerWidth;
     let scrollTop = window.pageYOffset !== undefined ? window.pageYOffset :
@@ -45,25 +58,12 @@ export class AppComponent {
 
     height = height / 3;
 
-    this.homeOpacity = (height - scrollTop) / height;
+    let value = element2 === "home" ? (height - scrollTop) / height : element2 === "contact" ?
+      (-(height - (scrollTop - this.getElements().contact.offsetTop)) / height) + 3 :
+      this.inView(this.getElements()[element1]) ?
+      (height - (scrollTop - this.getElements()[element2].offsetTop)) / height :
+      (-(height - (scrollTop - this.getElements()[element2].offsetTop)) / height) + 3;
 
-    this.aboutOpacity = this.inView(this.getElements().skills) ?
-      (height - (scrollTop - this.getElements().about.offsetTop)) / height :
-      (-(height - (scrollTop - this.getElements().about.offsetTop)) / height) + 3;
-
-    this.skillsOpacity = this.inView(this.getElements().work) ?
-      (height - (scrollTop - this.getElements().skills.offsetTop)) / height :
-      (-(height - (scrollTop - this.getElements().skills.offsetTop)) / height) + 3;
-
-    this.workOpacity = this.inView(this.getElements().contact) ?
-      (height - (scrollTop - this.getElements().work.offsetTop)) / height :
-      (-(height - (scrollTop - this.getElements().work.offsetTop)) / height) + 3;
-
-    this.contactOpacity = (-(height - (scrollTop - this.getElements().contact.offsetTop)) / height) + 3;
-  }
-
-  inView(element) {
-    let top = element.offsetTop;
-    return (top < (window.pageYOffset + window.innerHeight));
+    return value;
   }
 }
