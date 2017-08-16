@@ -23,6 +23,7 @@
 }
 
 app-root {
+  font-family: Lato;
   height: 500vh;
   justify-content: center;
 }

@@ -6,10 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./about.component.css']
 })
 export class AboutComponent {
+  orientation:string;
   h1HeaderFontSize:string;
   pFontSize:string;
   getValue(event) {
-    this.h1HeaderFontSize = event.h1HeaderFontSize;
-    this.pFontSize = event.pFontSize;
+    this.orientation = event.orientation;
+    this.h1HeaderFontSize = event.orientation === "landscape" ? "6vh" : "6vw";
+    this.pFontSize = event.orientation === "landscape" ? "3.5vh" : "3.5vw";
   }
 }

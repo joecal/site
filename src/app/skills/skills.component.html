@@ -1,11 +1,13 @@
 <div fxFlexFill onWindowResize (onWindowResizeEvent)="getValue($event)">
   <div fxLayout="row" fxLayoutAlign="flex-end">
-    <h1 id="skills" [style.font-size]="h1HeaderFontSize">Skills</h1>
+    <h1 id="skills" [style.font-size]="h1HeaderFontSize">SKILLS</h1>
   </div>
-  <div id="iconContainer" fxFlexFill fxLayoutWrap fxLayout="row" fxLayoutAlign="center center"
+  <div id="iconContainer" fxFlexFill fxLayout="row" fxLayoutAlign="center center"
     [style.padding-bottom]="iconContainerPad">
-    <i *ngFor="let icon of icons" [class]="icon" [style.font-size]="iconFontSize" #iconEl
-      [@growShrink]="iconEl.state" growShrinkState>
-    </i>
+    <div fxFlex="80" fxLayoutWrap fxLayout="row" fxLayoutAlign="center center">
+      <i *ngFor="let icon of icons" [class]="icon" [style.font-size]="iconFontSize" #iconEl
+        [@growShrink]="iconEl.state" growShrinkState>
+      </i>
+    </div>
   </div>
 </div>

@@ -8,10 +8,10 @@ import { growShrink } from '../shared/grow.shrink';
   animations: [ growShrink ]
 })
 export class HomeComponent {
+  orientation:string;
   h1FontSize:string;
-  jcFontSize:string;
   getValue(event) {
-    this.h1FontSize = event.h1FontSize
-    this.jcFontSize = event.h1FontSize === "9vh" ? "8vh" : "8vw"
+    this.orientation = event.orientation;
+    this.h1FontSize = event.orientation === "landscape" ? "7vh" : "7vw";
   }
 }

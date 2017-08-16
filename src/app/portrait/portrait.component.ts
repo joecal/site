@@ -8,8 +8,10 @@ import { growShrink } from '../shared/grow.shrink';
   animations: [ growShrink ]
 })
 export class PortraitComponent {
+  orientation:string;
   portraitMaxWidth:string;
   getValue(event) {
-    this.portraitMaxWidth = event.portraitMaxWidth
+    this.orientation = event.orientation;
+    this.portraitMaxWidth = event.orientation === "landscape" ? "20vw" : "20vh";
   }
 }

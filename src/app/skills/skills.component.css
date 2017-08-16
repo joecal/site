@@ -1,6 +1,8 @@
 #skills {
+  font-weight: 300;
   margin: 0.2em;
   padding-top: 0.3em;
+  border-bottom:1px solid #ccc;
 }
 
 #iconContainer {
@@ -9,4 +11,5 @@
 
 i {
   margin: 0.2em;
+  text-shadow: 0 3px 5px #ccc;
 }

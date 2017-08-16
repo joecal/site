@@ -6,8 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent {
+  orientation:string;
   h1HeaderFontSize:string;
   getValue(event) {
-    this.h1HeaderFontSize = event.h1HeaderFontSize;
+    this.orientation = event.orientation;
+    this.h1HeaderFontSize = event.orientation === "landscape" ? "6vh" : "6vw";
   }
 }

@@ -1,9 +1,16 @@
 <div fxFlexFill onWindowResize (onWindowResizeEvent)="getValue($event)">
   <div fxLayout="row" fxLayoutAlign="flex-start">
-    <h1 id="work" [style.font-size]="h1HeaderFontSize">Work</h1>
+    <h1 id="work" [style.font-size]="h1HeaderFontSize">WORK</h1>
   </div>
-  <div fxFlexFill fxLayout="column" fxLayoutAlign="center center">
-    <h1>Work Content</h1>
-    <app-resume></app-resume>
+  <div id="workContainer" fxFlexFill fxLayoutWrap fxLayout="row" fxLayoutAlign="center center">
+    <md-card *ngFor="let card of cards" [style.max-height]="cardMaxHeight" [style.max-width]="cardMaxWidth" fxLayoutWrap fxLayout="row" fxLayoutAlign="center center">
+      <div id="imgContainer">
+        <img [style.max-width]="cardMaxWidth" src="{{card.img}}"  #img [@growShrink]="img.state" growShrinkState>
+      </div>
+      <div fxLayoutWrap fxLayout="row" fxLayoutAlign="center center">
+        <a href="{{card.live}}" *ngIf="card.live"><div class="card-btn" [style.font-size]="cardFontSize" *ngIf="card.live" #btn1 [@growShrink]="btn1.state" growShrinkState>LIVE</div></a>
+        <a href="{{card.repo}}"><div class="card-btn" [style.font-size]="cardFontSize" #btn2 [@growShrink]="btn2.state" growShrinkState>REPO</div></a>
+      </div>
+    </md-card>
   </div>
 </div>

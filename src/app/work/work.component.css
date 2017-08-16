@@ -1,4 +1,24 @@
 #work {
+  font-weight: 300;
   margin: 0.2em;
   padding-top: 0.3em;
+  border-bottom:1px solid #ccc;
+}
+
+#workContainer {
+  padding-bottom: 3em;
+}
+
+#imgContainer {
+  overflow: hidden;
+}
+
+md-card {
+  margin: 0.8em;
+  padding: 0;
+}
+
+.card-btn {
+  font-weight: 100;
+  margin: 0.1em 0.6em;
 }

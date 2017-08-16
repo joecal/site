@@ -1,15 +1,18 @@
 #about {
+  font-weight: 300;
   margin: 0.2em;
   padding-top: 0.3em;
+  border-bottom:1px solid #ccc;
 }
 
 #aboutContent {
-  padding-bottom: 1.5em;
+  padding-bottom: 3em;
 }
 
 p {
+  font-weight: 300;
   max-width: 80vw;
-  margin-top: 1em;
+  margin-top: 3em;
   text-align: justify;
   line-height: 1.2em;
 }
