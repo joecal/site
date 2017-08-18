@@ -16,7 +16,11 @@ export class WindowResizeDirective {
     let height = window.innerHeight;
     let orientation = width > height ? "landscape" : "portrait";
 
-    let resizeObject = {orientation:orientation};
+    let resizeObject = {
+      width:width,
+      height:height,
+      orientation:orientation
+    };
 
     this.onWindowResizeEvent.emit(resizeObject);
   }

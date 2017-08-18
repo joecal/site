@@ -1,7 +1,9 @@
 #links img {
   max-width:100%;
+  -webkit-filter: drop-shadow(0 1px 3px #ccc);
+  filter: drop-shadow(0 1px 3px #ccc);
 }
 
 #links div {
-  margin: 0 0.5em;
+  margin: 0.2em 0.5em;
 }

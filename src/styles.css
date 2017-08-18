@@ -27,3 +27,7 @@ app-root {
   height: 500vh;
   justify-content: center;
 }
+
+.full-width {
+  width: 100%;
+}

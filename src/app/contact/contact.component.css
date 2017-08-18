@@ -4,3 +4,13 @@
   padding-top: 0.3em;
   border-bottom:1px solid #ccc;
 }
+
+#contactContent {
+  padding-bottom: 2em;
+}
+
+md-card {
+  padding: 12px 24px 0 24px;
+  margin-bottom: 1em;
+  width: 100%;
+}

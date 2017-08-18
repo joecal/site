@@ -1,25 +1,22 @@
-<!-- <div id="links">
-  <div fxFlex="auto" fxFlexAlign="center">
+<div id="links" onWindowResize (onWindowResizeEvent)="getValue($event)"
+  fxFlexFill fxLayout="row" fxLayoutAlign="center center" fxLayoutWrap>
+  <div [fxFlex]="divFlex">
     <a href="https://github.com/joecal">
       <img src="../../assets/github.png"
         #github [@growShrink]="github.state"
-        (mouseenter)="toggleState(github)"
-        (mouseleave)="toggleState(github)">
+        growShrinkState>
     </a>
   </div>
-  <div fxFlex="auto" fxFlexAlign="center">
+  <div [fxFlex]="divFlex">
     <a href="https://linkedin.com/in/joecalvillo">
       <img src="../../assets/linkedin.png"
         #linkedin [@growShrink]="linkedin.state"
-        (mouseenter)="toggleState(linkedin)"
-        (mouseleave)="toggleState(linkedin)">
+        growShrinkState>
     </a>
   </div>
-  <div fxFlex="auto" fxFlexAlign="center">
+  <div [fxFlex]="divFlex">
     <img src="../../assets/mail.png"
       #mail [@growShrink]="mail.state"
-      (click)="mailBool(true)"
-      (mouseenter)="toggleState(mail)"
-      (mouseleave)="toggleState(mail)">
+      growShrinkState>
   </div>
-</div> -->
+</div>

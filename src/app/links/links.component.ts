@@ -8,15 +8,19 @@ import { growShrink } from '../shared/grow.shrink';
   animations: [ growShrink ]
 })
 export class LinksComponent {
+  width:number;
+  height:number;
+  divFlex:number;
+  orientation:string;
 
-  @Output() onMailClicked = new EventEmitter();
+  getValue(event) {
+    this.width = event.width;
+    this.height = event.height;
+    this.orientation = event.orientation;
 
-  toggleState(target) {
-    target['state'] = target['state'] === undefined ||
-      target['state'] === 'small' ? target['state'] = 'large' :
-      target['state'] = 'small';
-  }
-  mailBool() {
-    this.onMailClicked.emit()
+    this.divFlex = event.orientation === "landscape" && event.height < 450 ?
+      9 : event.orientation === "landscape" && event.height > 450 ? 8 :
+      event.orientation === "portrait" && event.width < 450 ? 15 :
+      event.orientation === "portrait" && event.width > 450 ? 9 : null;
   }
 }

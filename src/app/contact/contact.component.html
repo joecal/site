@@ -2,7 +2,12 @@
   <div fxLayout="row" fxLayoutAlign="flex-end">
     <h1 id="contact" [style.font-size]="h1HeaderFontSize">CONTACT</h1>
   </div>
-  <div fxFlexFill fxLayout="row" fxLayoutAlign="center center">
-    <h1>Contact Content</h1>
+  <div id="contactContent" fxFlexFill fxLayout="row" fxLayoutAlign="center center" fxLayoutWrap>
+    <div fxFlex="60" [fxFlex.sm]="80" [fxFlex.xs]="80" fxLayoutWrap fxLayout="row" fxLayoutAlign="center center">
+      <md-card>
+        <app-form></app-form>
+      </md-card>
+      <app-links></app-links>
+    </div>
   </div>
 </div>
