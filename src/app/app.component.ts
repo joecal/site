@@ -1,12 +1,21 @@
-import { Component, ViewChildren, ElementRef, HostListener } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChildren, ElementRef, HostListener } from '@angular/core';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Meta, Title} from '@angular/platform-browser';
+import * as Trianglify from 'trianglify';
 
 @Component({
   selector: 'app-root',
+  animations: [
+    trigger('opacity', [
+      state('show' , style({ opacity: 1 })),
+      transition('* => *', animate('2s ease-in-out'))
+    ])
+  ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  opacity:string;
   homeOpacity:number;
   aboutOpacity:number;
   skillsOpacity:number;
@@ -20,6 +29,30 @@ export class AppComponent {
       { name: 'keywords', content: 'Joe Calvillo Portfolio'},
       { name: 'description', content: 'Joe Calvillo Portfolio'}
     ]);
+  }
+
+  ngOnInit() {
+    this.onWindowResize();
+  }
+
+  @HostListener("window:resize", [])
+
+  onWindowResize() {
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    let orientation = width > height ? "landscape" : "portrait";
+  }
+
+  ngAfterViewInit() {
+    let pattern = Trianglify({
+      width: document.body.clientWidth, height: document.body.clientHeight,
+      variance: "1",cell_size: 200, seed: 'muzbg', x_colors:
+      ['#ffffff','#ffffff','#fdfdfd','#fcfcfc','#fbfbfb','#fcfcfc','#fdfdfd','#ffffff','#ffffff'],
+      y_colors: 'match_x',color_space: 'rgb'})
+
+    document.body.style['background-image'] = 'url(' + pattern.png() + ')';
+
+    setTimeout(() => {this.opacity = 'show'},0);
   }
 
   @ViewChildren('home,about,skills,work,contact') children: ElementRef;

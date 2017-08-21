@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
-import { Message } from './message';
-import { Http, Headers } from '@angular/http';
+import { Component, OnInit, HostListener, EventEmitter, Output } from '@angular/core';
+import { Http, Headers, RequestOptions } from '@angular/http';
 
 @Component({
   selector: 'app-form',
@@ -8,56 +7,62 @@ import { Http, Headers } from '@angular/http';
   styleUrls: ['./form.component.css']
 })
 export class FormComponent {
-  width:number;
-  height:number;
-  orientation:string;
   formFontsize:string;
   inputMaxHeight:string;
-  submitted:boolean = false;
+  msgStatus:string;
 
-  model = new Message('', '', '');
+  ngOnInit() {this.onWindowResize()}
+
+  @HostListener('window:resize', [])
+
+  onWindowResize() {
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    let orientation = width > height ? "landscape" : "portrait";
+
+    this.formFontsize = orientation === "landscape" && height < 450 ?
+      '4.8vh' : orientation === "landscape" && height > 450 ? '3vh' :
+      orientation === "portrait" && width < 450 ? '5vw' :
+      orientation === "portrait" && width > 450 ? '3vw' : null;
+
+    this.inputMaxHeight = orientation === "landscape" && height < 450 ?
+      '14.8vh' : orientation === "landscape" && height > 450 ? '10vh' :
+      orientation === "portrait" && width < 450 ? '25vw' :
+      orientation === "portrait" && width > 450 ? '10vw' : null;
+  }
+
+  @Output() onSubmitted = new EventEmitter();
+  @Output() onMsgStatus = new EventEmitter();
 
   constructor(private http: Http) {}
 
-  getValue(event) {
-    this.width = event.width;
-    this.height = event.height;
-    this.orientation = event.orientation;
-
-    this.formFontsize = event.orientation === "landscape" && event.height < 450 ?
-      '4.8vh' : event.orientation === "landscape" && event.height > 450 ? '3vh' :
-      event.orientation === "portrait" && event.width < 450 ? '5vw' :
-      event.orientation === "portrait" && event.width > 450 ? '3vw' : null;
-
-    this.inputMaxHeight = event.orientation === "landscape" && event.height < 450 ?
-      '14.8vh' : event.orientation === "landscape" && event.height > 450 ? '10vh' :
-      event.orientation === "portrait" && event.width < 450 ? '25vw' :
-      event.orientation === "portrait" && event.width > 450 ? '10vw' : null;
-  }
-
-  onSubmit() {
-    // console.log(contactForm)
-    // console.log(values)
-    this.submitted = true;
-    // contactForm.reset();
-  }
-
   newMessage(contactForm,values) {
-    console.log(contactForm)
-    console.log(values)
+    this.onSubmitted.emit(true);
     contactForm.reset();
 
-    let headers = new Headers();
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
 
-    headers.append('Content-Type', 'application/X-www-form-urlencoded');
-
-    this.http.post('http://localhost:4000/mail', values, {headers: headers}).subscribe((data) => {
+    this.http.post('https://joecal.herokuapp.com/mail', values, options).subscribe(data => {
        if(data.json().success) {
-         console.log("success: ",data)
+         this.onSubmitted.emit(false);
+         this.msgStatus = data.json().success;
+         setTimeout(() => {
+           this.msgStatus = undefined;
+         }, 4000);
+       } else if (data.json().error) {
+         this.onSubmitted.emit(false);
+         this.msgStatus = data.json().error;
+         setTimeout(() => {
+           this.msgStatus = undefined;
+         }, 4000);
        } else {
-         console.log("fail: ",data)
+         this.onSubmitted.emit(false);
+         this.msgStatus = "Oops, something broke!";
+         setTimeout(() => {
+           this.msgStatus = undefined;
+         }, 4000);
        }
     })
-
   }
 }

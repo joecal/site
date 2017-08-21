@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-contact',
@@ -6,10 +6,22 @@ import { Component } from '@angular/core';
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent {
-  orientation:string;
   h1HeaderFontSize:string;
-  getValue(event) {
-    this.orientation = event.orientation;
-    this.h1HeaderFontSize = event.orientation === "landscape" ? "6vh" : "6vw";
+  submitted:boolean = false;
+
+  ngOnInit() {this.onWindowResize()}
+
+  @HostListener('window:resize', [])
+
+  onWindowResize() {
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    let orientation = width > height ? "landscape" : "portrait";
+
+    this.h1HeaderFontSize = orientation === "landscape" ? "6vh" : "6vw";
+  }
+
+  onSubmitted(event) {
+    this.submitted = event;
   }
 }

@@ -1,21 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { growShrink } from '../shared/grow.shrink';
+import { greyscale } from '../shared/greyscale';
 
 @Component({
   selector: 'app-work',
   templateUrl: './work.component.html',
   styleUrls: ['./work.component.css'],
-  animations: [ growShrink ]
+  animations: [ growShrink, greyscale ]
 })
 export class WorkComponent {
-  orientation:string;
-  imgContainerMaxWidth:string;
-  cardActionsMaxHeight:string;
-  cardActionsMaxWidth:string;
   h1HeaderFontSize:string;
-  cardBtnMaxHeight:string;
-  cardBtnMaxWidth:string;
-  cardImgMaxWidth:string;
   cardMaxHeight:string;
   cardMaxWidth:string;
   cardFontSize:string;
@@ -40,11 +34,19 @@ export class WorkComponent {
       description: "GA Bot is an app that keeps a GA student's profile on the profile listings front page for better employer visibility. Programmed with Node, Express and simple-headless-chrome.",
       repo: "https://github.com/joecal/gabot" }
   ];
-  getValue(event) {
-    this.orientation = event.orientation;
-    this.h1HeaderFontSize = event.orientation === "landscape" ? "6vh" : "6vw";
-    this.cardMaxHeight = event.orientation === "landscape" ? "16vw" : "16vh";
-    this.cardMaxWidth = event.orientation === "landscape" ? "24vw" : "23vh";
-    this.cardFontSize = event.orientation === "landscape" ? "4vh" : "4vw";
+
+  ngOnInit() {this.onWindowResize()}
+
+  @HostListener('window:resize', [])
+
+  onWindowResize() {
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    let orientation = width > height ? "landscape" : "portrait";
+
+    this.h1HeaderFontSize = orientation === "landscape" ? "6vh" : "6vw";
+    this.cardMaxHeight = orientation === "landscape" ? "16vw" : "20vh";
+    this.cardMaxWidth = orientation === "landscape" ? "24vw" : "23vh";
+    this.cardFontSize = orientation === "landscape" ? "4vh" : "4vw";
   }
 }

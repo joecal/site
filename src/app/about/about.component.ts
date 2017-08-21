@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-about',
@@ -6,12 +6,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./about.component.css']
 })
 export class AboutComponent {
-  orientation:string;
   h1HeaderFontSize:string;
   pFontSize:string;
-  getValue(event) {
-    this.orientation = event.orientation;
-    this.h1HeaderFontSize = event.orientation === "landscape" ? "6vh" : "6vw";
-    this.pFontSize = event.orientation === "landscape" ? "3.5vh" : "3.5vw";
+
+  ngOnInit() {this.onWindowResize()}
+
+  @HostListener('window:resize', [])
+
+  onWindowResize() {
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    let orientation = width > height ? "landscape" : "portrait";
+
+    this.h1HeaderFontSize = orientation === "landscape" ? "6vh" : "6vw";
+    this.pFontSize = orientation === "landscape" ? "3.5vh" : "3.5vw";
   }
 }

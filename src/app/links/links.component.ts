@@ -1,26 +1,28 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { growShrink } from '../shared/grow.shrink';
+import { greyscale } from '../shared/greyscale';
 
 @Component({
   selector: 'app-links',
   templateUrl: './links.component.html',
   styleUrls: ['./links.component.css'],
-  animations: [ growShrink ]
+  animations: [ growShrink, greyscale ]
 })
 export class LinksComponent {
-  width:number;
-  height:number;
   divFlex:number;
-  orientation:string;
 
-  getValue(event) {
-    this.width = event.width;
-    this.height = event.height;
-    this.orientation = event.orientation;
+  ngOnInit() {this.onWindowResize()}
 
-    this.divFlex = event.orientation === "landscape" && event.height < 450 ?
-      9 : event.orientation === "landscape" && event.height > 450 ? 8 :
-      event.orientation === "portrait" && event.width < 450 ? 15 :
-      event.orientation === "portrait" && event.width > 450 ? 9 : null;
+  @HostListener('window:resize', [])
+
+  onWindowResize() {
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    let orientation = width > height ? "landscape" : "portrait";
+
+    this.divFlex = orientation === "landscape" && height < 450 ?
+      9 : orientation === "landscape" && height > 450 ? 8 :
+      orientation === "portrait" && width < 450 ? 15 :
+      orientation === "portrait" && width > 450 ? 9 : null;
   }
 }

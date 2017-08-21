@@ -1,17 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { growShrink } from '../shared/grow.shrink';
+import { greyscale } from '../shared/greyscale';
 
 @Component({
   selector: 'app-portrait',
   templateUrl: './portrait.component.html',
   styleUrls: ['./portrait.component.css'],
-  animations: [ growShrink ]
+  animations: [ growShrink, greyscale ]
 })
 export class PortraitComponent {
-  orientation:string;
   portraitMaxWidth:string;
-  getValue(event) {
-    this.orientation = event.orientation;
-    this.portraitMaxWidth = event.orientation === "landscape" ? "20vw" : "20vh";
+
+  ngOnInit() {this.onWindowResize()}
+
+  @HostListener('window:resize', [])
+
+  onWindowResize() {
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    let orientation = width > height ? "landscape" : "portrait";
+
+    this.portraitMaxWidth = orientation === "landscape" ? "20vw" : "20vh";
   }
 }

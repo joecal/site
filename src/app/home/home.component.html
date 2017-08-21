@@ -1,13 +1,12 @@
-<div fxFlexFill fxLayout="column" fxLayoutAlign="space-between"
-  onWindowResize (onWindowResizeEvent)="getValue($event)">
+<div fxFlexFill fxLayout="column" fxLayoutAlign="space-between">
   <div fxLayout="row" fxLayoutAlign="space-around">
     <a pageScroll href="#about">
-      <h1 [style.font-size]="h1FontSize" #about [@growShrink]="about.state" growShrinkState>
+      <h1 [style.font-size]="h1FontSize" #about [@growShrink]="about.scale" growShrink>
         ABOUT
       </h1>
     </a>
     <a pageScroll href="#skills">
-      <h1 [style.font-size]="h1FontSize" #skills [@growShrink]="skills.state" growShrinkState>
+      <h1 [style.font-size]="h1FontSize" #skills [@growShrink]="skills.scale" growShrink>
         SKILLS
       </h1>
     </a>
@@ -21,12 +20,12 @@
 
   <div fxLayout="row" fxLayoutAlign="space-around">
     <a pageScroll href="#work">
-      <h1 [style.font-size]="h1FontSize" #work [@growShrink]="work.state" growShrinkState>
+      <h1 [style.font-size]="h1FontSize" #work [@growShrink]="work.scale" growShrink>
         WORK
       </h1>
     </a>
     <a pageScroll href="#contact">
-      <h1 [style.font-size]="h1FontSize" #contact [@growShrink]="contact.state" growShrinkState>
+      <h1 [style.font-size]="h1FontSize" #contact [@growShrink]="contact.scale" growShrink>
         CONTACT
       </h1>
     </a>

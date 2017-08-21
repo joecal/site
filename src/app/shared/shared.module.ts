@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
-import { GrowShrinkStateDirective } from './grow.shrink.state.directive';
-import { WindowResizeDirective } from './window.resize.directive';
+import { GrowShrinkDirective } from './grow.shrink.directive';
+import { GreyscaleDirective } from './greyscale.directive'
 
 @NgModule({
   declarations: [
-    GrowShrinkStateDirective,
-    WindowResizeDirective
+    GrowShrinkDirective,
+    GreyscaleDirective
   ],
   exports: [
-    GrowShrinkStateDirective,
-    WindowResizeDirective
+    GrowShrinkDirective,
+    GreyscaleDirective
   ]
 })
 export class SharedModule{}

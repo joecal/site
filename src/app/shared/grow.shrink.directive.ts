@@ -1,20 +1,20 @@
 import { Directive, ElementRef, HostListener } from '@angular/core';
 
-@Directive({ selector: '[growShrinkState]' })
-export class GrowShrinkStateDirective {
+@Directive({ selector: '[growShrink]' })
+export class GrowShrinkDirective {
 
   constructor(private el: ElementRef) { }
 
   @HostListener('mouseenter') onMouseEnter() {
-    this.setState('large');
+    this.setScale('large');
   }
 
   @HostListener('mouseleave') onMouseLeave() {
-    this.setState('small');
+    this.setScale('small');
   }
 
-  private setState(state: string) {
-    this.el.nativeElement.state = state;
+  private setScale(scale: string) {
+    this.el.nativeElement.scale = scale;
   }
 
 }

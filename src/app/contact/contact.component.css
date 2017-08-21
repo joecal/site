@@ -11,6 +11,9 @@
 
 md-card {
   padding: 12px 24px 0 24px;
-  margin-bottom: 1em;
   width: 100%;
+}
+
+app-links {
+  margin-top: 1em;
 }

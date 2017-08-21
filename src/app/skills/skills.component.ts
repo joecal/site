@@ -1,14 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { growShrink } from '../shared/grow.shrink';
+import { greyscale } from '../shared/greyscale';
 
 @Component({
   selector: 'app-skills',
   templateUrl: './skills.component.html',
   styleUrls: ['./skills.component.css'],
-  animations: [ growShrink ]
+  animations: [ growShrink, greyscale ]
 })
 export class SkillsComponent {
-  orientation:string;
   h1HeaderFontSize:string;
   iconContainerPad:string;
   iconFontSize:string;
@@ -51,10 +51,17 @@ export class SkillsComponent {
     "devicon-ubuntu-plain-wordmark colored"
   ];
 
-  getValue(event) {
-    this.orientation = event.orientation;
-    this.h1HeaderFontSize = event.orientation === "landscape" ? "6vh" : "6vw";
-    this.iconContainerPad = event.orientation === "landscape" ? "3em" : "4em";
-    this.iconFontSize = event.orientation === "landscape" ? "11vh" : "11vw";
+  ngOnInit() {this.onWindowResize()}
+
+  @HostListener('window:resize', [])
+
+  onWindowResize() {
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    let orientation = width > height ? "landscape" : "portrait";
+
+    this.h1HeaderFontSize = orientation === "landscape" ? "6vh" : "6vw";
+    this.iconContainerPad = orientation === "landscape" ? "3em" : "4em";
+    this.iconFontSize = orientation === "landscape" ? "11vh" : "11vw";
   }
 }

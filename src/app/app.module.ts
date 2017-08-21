@@ -3,7 +3,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from "@angular/flex-layout";
-import { MdButtonModule, MdIconModule, MdGridListModule, MdListModule, MdCardModule, MdInputModule } from '@angular/material';
+import { MdButtonModule, MdIconModule, MdGridListModule, MdListModule, MdCardModule, MdInputModule, MdProgressBarModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
@@ -12,7 +12,6 @@ import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 import { PortraitComponent } from './portrait/portrait.component';
 import { LinksComponent } from './links/links.component';
-import { SentComponent } from './sent/sent.component';
 import { WorkComponent } from './work/work.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
@@ -25,7 +24,6 @@ import { FormComponent } from './form/form.component';
     AppComponent,
     PortraitComponent,
     LinksComponent,
-    SentComponent,
     WorkComponent,
     HomeComponent,
     AboutComponent,
@@ -44,6 +42,7 @@ import { FormComponent } from './form/form.component';
     MdListModule,
     MdCardModule,
     MdInputModule,
+    MdProgressBarModule,
     FormsModule,
     HttpModule,
     Ng2PageScrollModule,

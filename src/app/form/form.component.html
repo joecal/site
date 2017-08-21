@@ -1,5 +1,4 @@
-<form onWindowResize (onWindowResizeEvent)="getValue($event)" [style.font-size]="formFontsize"
-  #contactForm="ngForm" fxLayoutAlign="center" fxLayoutWrap>
+<form [style.font-size]="formFontsize" #contactForm="ngForm" fxLayoutAlign="center" fxLayoutWrap>
 
   <md-input-container [style.max-height]="inputMaxHeight">
     <input type="text" required mdInput placeholder="Name"
@@ -17,9 +16,12 @@
     </textarea>
   </md-input-container>
 
-  <div [style.margin]="'1em 0 0.2em 0'" fxLayoutAlign="center">
+  <div id="buttonContainer" fxLayoutAlign="center">
     <a md-button [style.font-size]="formFontsize" [disabled]="!contactForm.form.valid"
       (click)="contactForm.form.valid ? newMessage(contactForm,contactForm.value) : null">SUBMIT</a>
+    <div *ngIf="msgStatus !== undefined" id="msgStatus" fxLayoutAlign="center center">
+      {{msgStatus}}
+    </div>
     <a md-button [style.font-size]="formFontsize" (click)="contactForm.reset()">CANCEL</a>
   </div>
 </form>

@@ -18,7 +18,13 @@ md-card {
   padding: 0;
 }
 
-.card-btn {
+a {
   font-weight: 100;
-  margin: 0.1em 0.6em;
+  margin: 0.1em 0.2em 0.4em 0.2em;
+}
+
+.mat-button {
+  min-width: 2em;
+  line-height: 1.2em;
+  max-width: 6em;
 }

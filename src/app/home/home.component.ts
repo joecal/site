@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { growShrink } from '../shared/grow.shrink';
 
 @Component({
@@ -8,10 +8,17 @@ import { growShrink } from '../shared/grow.shrink';
   animations: [ growShrink ]
 })
 export class HomeComponent {
-  orientation:string;
   h1FontSize:string;
-  getValue(event) {
-    this.orientation = event.orientation;
-    this.h1FontSize = event.orientation === "landscape" ? "7vh" : "7vw";
+
+  ngOnInit() {this.onWindowResize()}
+
+  @HostListener('window:resize', [])
+
+  onWindowResize() {
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    let orientation = width > height ? "landscape" : "portrait";
+
+    this.h1FontSize = orientation === "landscape" ? "7vh" : "7vw";
   }
 }
