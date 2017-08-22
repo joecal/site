@@ -1,4 +1,3 @@
-const exec = require('child_process').exec;
 const express = require('express');
 const bodyParser = require('body-parser');
 const validator = require('validator');
@@ -6,6 +5,7 @@ const nodemailer = require('nodemailer');
 const compression = require('compression');
 const path = require('path');
 const http = require('http');
+const fs = require('fs');
 const config = require('../config.json');
 const app = express();
 
@@ -27,25 +27,20 @@ app.use(compression());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
-
-app.use(express.static(path.join(__dirname, '../dist')));
-
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../dist/index.html'));
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Request-Method', '*');
+  res.header("Access-Control-Allow-Methods", "GET,POST");
+  res.header("Access-Control-Allow-Headers", "*");
+  next();
 });
 
-const port = process.env.PORT || '4000';
-app.set('port', port);
-
-const server = http.createServer(app);
-
-app.post('/mail', (req, res) => {
+app.post('/mail', (req, res, next) => {
 
   res.setHeader('Access-Control-Allow-Origin', 'https://joecal.herokuapp.com');
   res.setHeader('Access-Control-Request-Method', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST');
   res.setHeader('Access-Control-Allow-Headers', '*');
-
 
   if (!validateMessage(req.body)) {
     return res.send({
@@ -72,6 +67,7 @@ app.post('/mail', (req, res) => {
       }
     })
   }
+  next();
 });
 
 const validateMessage = (reqBody) => {
@@ -93,5 +89,17 @@ const validateMessage = (reqBody) => {
     return null;
   };
 };
+
+app.get('/wakemydyno.txt',(req, res, next) => {
+  res.sendFile(path.join(__dirname, '/', 'wakemydyno.txt'));
+});
+
+app.use(express.static(path.join(__dirname, '../dist')));
+
+const port = process.env.PORT || '4000';
+
+app.set('port', port);
+
+const server = http.createServer(app);
 
 server.listen(port, () => console.log(`Running on localhost:${port}`));
