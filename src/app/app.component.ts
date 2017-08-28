@@ -1,5 +1,6 @@
-import { Component, OnInit, AfterViewInit, ViewChildren, ElementRef, HostListener } from '@angular/core';
+import { Component, Inject, PLATFORM_ID, OnInit, AfterViewInit, ViewChildren, ElementRef, HostListener } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { isPlatformBrowser } from '@angular/common';
 import { Meta, Title} from '@angular/platform-browser';
 import * as Trianglify from 'trianglify';
 
@@ -22,7 +23,7 @@ export class AppComponent {
   workOpacity:number;
   contactOpacity:number;
 
-  constructor(meta: Meta, title: Title) {
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, meta: Meta, title: Title) {
     title.setTitle('Joe Calvillo Portfolio');
 
     meta.addTags([
@@ -31,28 +32,30 @@ export class AppComponent {
     ]);
   }
 
-  ngOnInit() {
-    this.onWindowResize();
-  }
+  ngOnInit() {this.onWindowResize()}
 
   @HostListener("window:resize", [])
 
   onWindowResize() {
-    let width = window.innerWidth;
-    let height = window.innerHeight;
-    let orientation = width > height ? "landscape" : "portrait";
+    if (isPlatformBrowser(this.platformId)) {
+      let width = window.innerWidth;
+      let height = window.innerHeight;
+      let orientation = width > height ? "landscape" : "portrait";
+    }
   }
 
   ngAfterViewInit() {
-    let pattern = Trianglify({
-      width: document.body.clientWidth, height: document.body.clientHeight,
-      variance: "1",cell_size: 200, seed: 'muzbg', x_colors:
-      ['#ffffff','#ffffff','#fdfdfd','#fcfcfc','#fbfbfb','#fcfcfc','#fdfdfd','#ffffff','#ffffff'],
-      y_colors: 'match_x',color_space: 'rgb'})
+    if (isPlatformBrowser(this.platformId)) {
+      let pattern = Trianglify({
+        width: document.body.clientWidth, height: document.body.clientHeight,
+        variance: "1",cell_size: 200, seed: 'muzbg', x_colors:
+        ['#ffffff','#ffffff','#fdfdfd','#fcfcfc','#fbfbfb','#fcfcfc','#fdfdfd','#ffffff','#ffffff'],
+        y_colors: 'match_x',color_space: 'rgb'})
 
-    document.body.style['background-image'] = 'url(' + pattern.png() + ')';
+      document.body.style['background-image'] = 'url(' + pattern.png() + ')';
 
-    setTimeout(() => {this.opacity = 'show'},0);
+      setTimeout(() => {this.opacity = 'show'},0);
+    }
   }
 
   @ViewChildren('home,about,skills,work,contact') children: ElementRef;
@@ -71,32 +74,38 @@ export class AppComponent {
   @HostListener("window:scroll", [])
 
   onWindowScroll() {
-    this.homeOpacity = this.setOpacity(null,"home");
-    this.aboutOpacity = this.setOpacity("skills","about");
-    this.skillsOpacity = this.setOpacity("work","skills");
-    this.workOpacity = this.setOpacity("contact","work");
-    this.contactOpacity = this.setOpacity(null,"contact");
+    if (isPlatformBrowser(this.platformId)) {
+      this.homeOpacity = this.setOpacity(null,"home");
+      this.aboutOpacity = this.setOpacity("skills","about");
+      this.skillsOpacity = this.setOpacity("work","skills");
+      this.workOpacity = this.setOpacity("contact","work");
+      this.contactOpacity = this.setOpacity(null,"contact");
+    }
   }
 
   inView(element) {
-    let top = element.offsetTop;
-    return (top < (window.pageYOffset + window.innerHeight));
+    if (isPlatformBrowser(this.platformId)) {
+      let top = element.offsetTop;
+      return (top < (window.pageYOffset + window.innerHeight));
+    }
   }
 
   setOpacity(element1,element2) {
-    let height = window.innerHeight;
-    let width = window.innerWidth;
-    let scrollTop = window.pageYOffset !== undefined ? window.pageYOffset :
-      document.documentElement.scrollTop || document.body.scrollTop;
+    if (isPlatformBrowser(this.platformId)) {
+      let height = window.innerHeight;
+      let width = window.innerWidth;
+      let scrollTop = window.pageYOffset !== undefined ? window.pageYOffset :
+        document.documentElement.scrollTop || document.body.scrollTop;
 
-    height = height / 3;
+      height = height / 3;
 
-    let value = element2 === "home" ? (height - scrollTop) / height : element2 === "contact" ?
-      (-(height - (scrollTop - this.getElements().contact.offsetTop)) / height) + 3 :
-      this.inView(this.getElements()[element1]) ?
-      (height - (scrollTop - this.getElements()[element2].offsetTop)) / height :
-      (-(height - (scrollTop - this.getElements()[element2].offsetTop)) / height) + 3;
+      let value = element2 === "home" ? (height - scrollTop) / height : element2 === "contact" ?
+        (-(height - (scrollTop - this.getElements().contact.offsetTop)) / height) + 3 :
+        this.inView(this.getElements()[element1]) ?
+        (height - (scrollTop - this.getElements()[element2].offsetTop)) / height :
+        (-(height - (scrollTop - this.getElements()[element2].offsetTop)) / height) + 3;
 
-    return value;
+      return value;
+    }
   }
 }

@@ -1,11 +1,11 @@
 <div fxFlexFill fxLayout="column" fxLayoutAlign="space-between">
   <div fxLayout="row" fxLayoutAlign="space-around">
-    <a pageScroll href="#about">
+    <a scrollTo [elementId]="'about'">
       <h1 [style.font-size]="h1FontSize" #about [@growShrink]="about.scale" growShrink>
         ABOUT
       </h1>
     </a>
-    <a pageScroll href="#skills">
+    <a scrollTo [elementId]="'skills'">
       <h1 [style.font-size]="h1FontSize" #skills [@growShrink]="skills.scale" growShrink>
         SKILLS
       </h1>
@@ -19,12 +19,12 @@
   </div>
 
   <div fxLayout="row" fxLayoutAlign="space-around">
-    <a pageScroll href="#work">
+    <a scrollTo [elementId]="'work'">
       <h1 [style.font-size]="h1FontSize" #work [@growShrink]="work.scale" growShrink>
         WORK
       </h1>
     </a>
-    <a pageScroll href="#contact">
+    <a scrollTo [elementId]="'contact'">
       <h1 [style.font-size]="h1FontSize" #contact [@growShrink]="contact.scale" growShrink>
         CONTACT
       </h1>

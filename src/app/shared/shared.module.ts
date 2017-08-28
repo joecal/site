@@ -1,15 +1,18 @@
 import { NgModule } from '@angular/core';
 import { GrowShrinkDirective } from './grow.shrink.directive';
 import { GreyscaleDirective } from './greyscale.directive'
+import { ScrollToDirective } from './scroll.directive'
 
 @NgModule({
   declarations: [
     GrowShrinkDirective,
-    GreyscaleDirective
+    GreyscaleDirective,
+    ScrollToDirective
   ],
   exports: [
     GrowShrinkDirective,
-    GreyscaleDirective
+    GreyscaleDirective,
+    ScrollToDirective
   ]
 })
 export class SharedModule{}

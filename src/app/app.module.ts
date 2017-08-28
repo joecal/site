@@ -6,7 +6,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { MdButtonModule, MdIconModule, MdGridListModule, MdListModule, MdCardModule, MdInputModule, MdProgressBarModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { Ng2PageScrollModule } from 'ng2-page-scroll';
+import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
 
 import { AppComponent } from './app.component';
@@ -33,6 +33,7 @@ import { FormComponent } from './form/form.component';
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'site'}),
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
@@ -45,7 +46,6 @@ import { FormComponent } from './form/form.component';
     MdProgressBarModule,
     FormsModule,
     HttpModule,
-    Ng2PageScrollModule,
     SharedModule
   ],
   providers: [],

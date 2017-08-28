@@ -1,13 +1,25 @@
+'use strict';
+
+require('zone.js/dist/zone-node');
+
 const express = require('express');
+const ngUniversal = require('@nguniversal/express-engine');
+const appServer = require('../dist-server/main.bundle');
 const bodyParser = require('body-parser');
 const validator = require('validator');
 const nodemailer = require('nodemailer');
 const compression = require('compression');
+const helmet = require('helmet');
+const sixtyDaysInSeconds = 5184000;
+const scraper = require('table-scraper');
 const path = require('path');
 const http = require('http');
 const fs = require('fs');
 const config = require('../config.json');
+
 const app = express();
+const port = process.env.PORT || '4000';
+const server = http.createServer(app);
 
 const transporter = nodemailer.createTransport({
   host: config.mailer.host,
@@ -23,7 +35,56 @@ const transporter = nodemailer.createTransport({
   }
 });
 
+function validateMessage(reqBody) {
+  let reqName = validator.whitelist(reqBody.name, 'A-z\ '),
+    reqMessage = validator.whitelist(reqBody.message,
+      'a-zA-Z0-9!@#?\ \$%\:\~\,\^\&*\)\(+=._-');
+
+  if (validator.isLength(reqName, {
+      min: 1,
+      max: 20
+    }) === true &&
+    validator.isEmail(reqBody.email) === true) {
+    return {
+      name: reqName,
+      email: reqBody.email,
+      message: reqMessage
+    };
+  } else {
+    return null;
+  };
+};
+
+function angularRouter(req, res) {
+  res.render('index', {
+    req,
+    res,
+    providers: [{
+      provide: 'serverUrl',
+      useValue: `${req.protocol}://${req.get('host')}`
+    }]
+  });
+}
+
 app.use(compression());
+
+app.use(helmet());
+app.use(helmet.noCache());
+app.use(helmet.ieNoOpen());
+app.use(helmet.xssFilter());
+app.use(helmet.dnsPrefetchControl());
+app.use(helmet.frameguard({
+  action: 'deny'
+}));
+app.use(helmet.hidePoweredBy({
+  setTo: 'PHP 4.2.0'
+}));
+app.use(helmet.referrerPolicy({
+  policy: 'no-referrer'
+}));
+app.use(helmet.hsts({
+  maxAge: sixtyDaysInSeconds
+}));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
@@ -35,7 +96,23 @@ app.use((req, res, next) => {
   next();
 });
 
-app.post('/mail', (req, res, next) => {
+app.get('/', angularRouter);
+
+app.use(express.static(`${__dirname}/../dist`));
+
+app.engine('html', ngUniversal.ngExpressEngine({
+  bootstrap: appServer.AppServerModuleNgFactory
+}));
+
+app.set('view engine', 'html');
+app.set('views', 'dist');
+app.set('port', port);
+
+app.get('/wakemydyno.txt',(req, res, next) => {
+  res.sendFile(path.join(__dirname, '/', 'wakemydyno.txt'));
+});
+
+app.post('/mail', (req, res) => {
 
   res.setHeader('Access-Control-Allow-Origin', 'https://joecal.herokuapp.com');
   res.setHeader('Access-Control-Request-Method', '*');
@@ -67,39 +144,8 @@ app.post('/mail', (req, res, next) => {
       }
     })
   }
-  next();
 });
 
-const validateMessage = (reqBody) => {
-  let reqName = validator.whitelist(reqBody.name, 'A-z\ '),
-    reqMessage = validator.whitelist(reqBody.message,
-      'a-zA-Z0-9!@#?\ \$%\:\~\,\^\&*\)\(+=._-');
-
-  if (validator.isLength(reqName, {
-      min: 1,
-      max: 20
-    }) === true &&
-    validator.isEmail(reqBody.email) === true) {
-    return {
-      name: reqName,
-      email: reqBody.email,
-      message: reqMessage
-    };
-  } else {
-    return null;
-  };
-};
-
-app.get('/wakemydyno.txt',(req, res, next) => {
-  res.sendFile(path.join(__dirname, '/', 'wakemydyno.txt'));
-});
-
-app.use(express.static(path.join(__dirname, '../dist')));
-
-const port = process.env.PORT || '4000';
-
-app.set('port', port);
-
-const server = http.createServer(app);
+app.get('*', angularRouter);
 
 server.listen(port, () => console.log(`Running on localhost:${port}`));

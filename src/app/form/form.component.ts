@@ -1,5 +1,6 @@
-import { Component, OnInit, HostListener, EventEmitter, Output } from '@angular/core';
+import { Component, Inject, PLATFORM_ID, OnInit, HostListener, EventEmitter, Output } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-form',
@@ -11,30 +12,32 @@ export class FormComponent {
   inputMaxHeight:string;
   msgStatus:string;
 
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private http: Http) {}
+
   ngOnInit() {this.onWindowResize()}
 
   @HostListener('window:resize', [])
 
   onWindowResize() {
-    let width = window.innerWidth;
-    let height = window.innerHeight;
-    let orientation = width > height ? "landscape" : "portrait";
+    if (isPlatformBrowser(this.platformId)) {
+      let width = window.innerWidth;
+      let height = window.innerHeight;
+      let orientation = width > height ? "landscape" : "portrait";
 
-    this.formFontsize = orientation === "landscape" && height < 450 ?
-      '4.8vh' : orientation === "landscape" && height > 450 ? '3vh' :
-      orientation === "portrait" && width < 450 ? '5vw' :
-      orientation === "portrait" && width > 450 ? '3vw' : null;
+      this.formFontsize = orientation === "landscape" && height < 450 ?
+        '4.8vh' : orientation === "landscape" && height > 450 ? '3vh' :
+        orientation === "portrait" && width < 450 ? '5vw' :
+        orientation === "portrait" && width > 450 ? '3vw' : null;
 
-    this.inputMaxHeight = orientation === "landscape" && height < 450 ?
-      '14.8vh' : orientation === "landscape" && height > 450 ? '10vh' :
-      orientation === "portrait" && width < 450 ? '25vw' :
-      orientation === "portrait" && width > 450 ? '10vw' : null;
+      this.inputMaxHeight = orientation === "landscape" && height < 450 ?
+        '14.8vh' : orientation === "landscape" && height > 450 ? '10vh' :
+        orientation === "portrait" && width < 450 ? '25vw' :
+        orientation === "portrait" && width > 450 ? '10vw' : null;
+    }
   }
 
   @Output() onSubmitted = new EventEmitter();
   @Output() onMsgStatus = new EventEmitter();
-
-  constructor(private http: Http) {}
 
   newMessage(contactForm,values) {
     this.onSubmitted.emit(true);
