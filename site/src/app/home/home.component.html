@@ -1,0 +1,53 @@
+<div>
+  <div>
+    <a scrollTo [elementId]="'about'">
+      <h1
+        [style.font-size]="h1FontSize"
+        #about
+        [@growShrink]="about.scale"
+        growShrink
+      >
+        ABOUT
+      </h1>
+    </a>
+    <a scrollTo [elementId]="'skills'">
+      <h1
+        [style.font-size]="h1FontSize"
+        #skills
+        [@growShrink]="skills.scale"
+        growShrink
+      >
+        SKILLS
+      </h1>
+    </a>
+  </div>
+
+  <div>
+    <h1 id="jc" [style.font-size]="h1FontSize">
+      Joe Calvillo : Developer
+    </h1>
+  </div>
+
+  <div>
+    <a scrollTo [elementId]="'work'">
+      <h1
+        [style.font-size]="h1FontSize"
+        #work
+        [@growShrink]="work.scale"
+        growShrink
+      >
+        WORK
+      </h1>
+    </a>
+    <a scrollTo [elementId]="'contact'">
+      <h1
+        [style.font-size]="h1FontSize"
+        #contact
+        [@growShrink]="contact.scale"
+        growShrink
+      >
+        CONTACT
+      </h1>
+    </a>
+  </div>
+</div>

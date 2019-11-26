@@ -1,0 +1,17 @@
+<div>
+  <div>
+    <h1 id="contact" [style.font-size]="h1HeaderFontSize">CONTACT</h1>
+  </div>
+  <div id="contactContent">
+    <div>
+      <mat-card>
+        <!-- <app-form (onSubmitted)="onSubmitted($event)"></app-form> -->
+      </mat-card>
+      <mat-progress-bar
+        *ngIf="submitted"
+        mode="indeterminate"
+      ></mat-progress-bar>
+      <!-- <app-links></app-links> -->
+    </div>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+<div>
+  <div fxLayout="row">
+    <h1 id="work" [style.font-size]="h1HeaderFontSize">WORK</h1>
+  </div>
+  <div id="workContainer">
+    <mat-card
+      *ngFor="let card of cards"
+      [style.max-height]="cardMaxHeight"
+      [style.max-width]="cardMaxWidth"
+    >
+      <div id="imgContainer">
+        <img
+          [style.max-width]="cardMaxWidth"
+          src="{{ card.img }}"
+          #img
+          [@growShrink]="img.scale"
+          growShrink
+        />
+      </div>
+      <div>
+        <a
+          md-button
+          href="{{ card.live }}"
+          [style.font-size]="cardFontSize"
+          *ngIf="card.live"
+          >LIVE</a
+        >
+        <a md-button href="{{ card.repo }}" [style.font-size]="cardFontSize"
+          >REPO</a
+        >
+      </div>
+    </mat-card>
+  </div>
+</div>

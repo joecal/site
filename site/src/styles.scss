@@ -1,1 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
+
+* {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: inherit;
+  font-style: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  text-decoration: none;
+  color: inherit;
+  background-color: transparent;
+  list-style-type: none;
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+app-root {
+  height: 500vh;
+  font-family: Lato;
+  justify-content: center;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
