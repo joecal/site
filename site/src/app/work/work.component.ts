@@ -71,7 +71,7 @@ export class WorkComponent implements OnInit {
     }
   ];
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor(@Inject(PLATFORM_ID) private platformId: object) {}
 
   ngOnInit() {
     this.onWindowResize();
@@ -80,9 +80,9 @@ export class WorkComponent implements OnInit {
   @HostListener("window:resize", [])
   onWindowResize() {
     if (isPlatformBrowser(this.platformId)) {
-      let width = window.innerWidth;
-      let height = window.innerHeight;
-      let orientation = width > height ? "landscape" : "portrait";
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      const orientation = width > height ? "landscape" : "portrait";
 
       this.h1HeaderFontSize = orientation === "landscape" ? "6vh" : "6vw";
       this.cardMaxHeight = orientation === "landscape" ? "16vw" : "20vh";

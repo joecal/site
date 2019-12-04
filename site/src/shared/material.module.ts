@@ -1,18 +1,18 @@
 import { NgModule } from "@angular/core";
-import { MatGridListModule } from "@angular/material/grid-list";
+import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
 import { MatInputModule } from "@angular/material/input";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 
 @NgModule({
   imports: [
-    MatGridListModule,
+    MatButtonModule,
     MatCardModule,
     MatInputModule,
     MatProgressBarModule
   ],
   exports: [
-    MatGridListModule,
+    MatButtonModule,
     MatCardModule,
     MatInputModule,
     MatProgressBarModule

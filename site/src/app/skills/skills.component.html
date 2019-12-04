@@ -1,8 +1,8 @@
-<div>
+<div class="skills">
   <div>
     <h1 id="skills" [style.font-size]="h1HeaderFontSize">SKILLS</h1>
   </div>
-  <div id="iconContainer" [style.padding-bottom]="iconContainerPad">
+  <div class="skills-icons" [style.padding-bottom]="iconContainerPad">
     <div>
       <i
         *ngFor="let icon of icons"
@@ -10,7 +10,7 @@
         [style.font-size]="iconFontSize"
         #iconEl
         [@growShrink]="iconEl.scale"
-        growShrink
+        appGrowShrink
       >
       </i>
     </div>

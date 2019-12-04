@@ -6,7 +6,8 @@ import {
   PLATFORM_ID,
   HostListener,
   ViewChildren,
-  ElementRef
+  ElementRef,
+  QueryList
 } from "@angular/core";
 import {
   trigger,
@@ -31,7 +32,9 @@ import * as Trianglify from "trianglify";
   styleUrls: ["./app.component.scss"]
 })
 export class AppComponent implements OnInit, AfterViewInit {
-  @ViewChildren("home,about,skills,work,contact") children: ElementRef;
+  @ViewChildren("home,about,skills,work,contact") children: QueryList<
+    ElementRef
+  >;
   opacity: string;
   homeOpacity: number;
   aboutOpacity: number;
@@ -53,16 +56,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.onWindowResize();
-  }
-
-  @HostListener("window:resize", [])
-  onWindowResize() {
-    if (isPlatformBrowser(this.platformId)) {
-      let width = window.innerWidth;
-      let height = window.innerHeight;
-      let orientation = width > height ? "landscape" : "portrait";
-    }
+    // this.onWindowResize(); // TODO
   }
 
   ngAfterViewInit() {
@@ -96,21 +90,13 @@ export class AppComponent implements OnInit, AfterViewInit {
     }
   }
 
-  getElements() {
-    const childrenList = this.children["_results"];
-    const home = childrenList[0]["_element"].nativeElement;
-    const about = childrenList[1]["_element"].nativeElement;
-    const skills = childrenList[2]["_element"].nativeElement;
-    const work = childrenList[3]["_element"].nativeElement;
-    const contact = childrenList[4]["_element"].nativeElement;
-
-    return {
-      home: home,
-      about: about,
-      skills: skills,
-      work: work,
-      contact: contact
-    };
+  @HostListener("window:resize", [])
+  onWindowResize() {
+    if (isPlatformBrowser(this.platformId)) {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      const orientation = width > height ? "landscape" : "portrait";
+    }
   }
 
   @HostListener("window:scroll", [])
@@ -124,14 +110,31 @@ export class AppComponent implements OnInit, AfterViewInit {
     }
   }
 
-  inView(element) {
+  private getElements() {
+    const childrenList = this.children.toArray();
+    const homeElement = childrenList[0].nativeElement;
+    const aboutElement = childrenList[1].nativeElement;
+    const skillsElement = childrenList[2].nativeElement;
+    const workElement = childrenList[3].nativeElement;
+    const contactElement = childrenList[4].nativeElement;
+
+    return {
+      home: homeElement,
+      about: aboutElement,
+      skills: skillsElement,
+      work: workElement,
+      contact: contactElement
+    };
+  }
+
+  private inView(element: HTMLElement) {
     if (isPlatformBrowser(this.platformId)) {
       const top = element.offsetTop;
       return top < window.pageYOffset + window.innerHeight;
     }
   }
 
-  setOpacity(element1, element2) {
+  private setOpacity(elementName1: string, elementName2: string) {
     if (isPlatformBrowser(this.platformId)) {
       let height = window.innerHeight;
       const width = window.innerWidth;
@@ -139,23 +142,24 @@ export class AppComponent implements OnInit, AfterViewInit {
         window.pageYOffset !== undefined
           ? window.pageYOffset
           : document.documentElement.scrollTop || document.body.scrollTop;
-
       height = height / 3;
-
       const value =
-        element2 === "home"
+        elementName2 === "home"
           ? (height - scrollTop) / height
-          : element2 === "contact"
+          : elementName2 === "contact"
           ? -(height - (scrollTop - this.getElements().contact.offsetTop)) /
               height +
             3
-          : this.inView(this.getElements()[element1])
-          ? (height - (scrollTop - this.getElements()[element2].offsetTop)) /
+          : this.inView(this.getElements()[elementName1])
+          ? (height -
+              (scrollTop - this.getElements()[elementName2].offsetTop)) /
             height
-          : -(height - (scrollTop - this.getElements()[element2].offsetTop)) /
+          : -(
+              height -
+              (scrollTop - this.getElements()[elementName2].offsetTop)
+            ) /
               height +
             3;
-
       return value;
     }
   }

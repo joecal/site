@@ -5,15 +5,52 @@
   border-bottom: 1px solid #ccc;
 }
 
-#contactContent {
-  padding-bottom: 2em;
+mat-card {
+  padding: 12px 24px;
+  width: 100%;
+  margin-bottom: 3%;
 }
 
-mat-card {
-  padding: 12px 24px 0 24px;
+mat-form-field {
   width: 100%;
 }
 
-app-links {
-  margin-top: 1em;
+button {
+  font-weight: 100;
+}
+
+.contact {
+  height: 100vh;
+  display: flex;
+}
+
+.contact-content {
+  display: flex;
+  align-items: center;
+  margin-top: 15%;
+  margin-left: 5%;
+}
+
+.contact-sub-content {
+  max-width: 75%;
+}
+
+.contact-form-actions {
+  display: flex;
+  justify-content: space-around;
+}
+
+.contact-links {
+  display: flex;
+}
+
+.contact-link {
+  width: 33%;
+  text-align: center;
+}
+
+.contact-links img {
+  max-width: 20%;
+  -webkit-filter: drop-shadow(0 1px 3px #ccc) grayscale(100%);
+  filter: drop-shadow(0 1px 3px #ccc) grayscale(100%);
 }

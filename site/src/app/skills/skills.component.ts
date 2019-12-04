@@ -58,7 +58,7 @@ export class SkillsComponent implements OnInit {
     "devicon-ubuntu-plain-wordmark colored"
   ];
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor(@Inject(PLATFORM_ID) private platformId: object) {}
 
   ngOnInit() {
     this.onWindowResize();
@@ -67,9 +67,9 @@ export class SkillsComponent implements OnInit {
   @HostListener("window:resize", [])
   onWindowResize() {
     if (isPlatformBrowser(this.platformId)) {
-      let width = window.innerWidth;
-      let height = window.innerHeight;
-      let orientation = width > height ? "landscape" : "portrait";
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      const orientation = width > height ? "landscape" : "portrait";
 
       this.h1HeaderFontSize = orientation === "landscape" ? "6vh" : "6vw";
       this.iconContainerPad = orientation === "landscape" ? "3em" : "4em";

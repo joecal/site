@@ -1,66 +1,86 @@
-import { Directive, Input, HostListener, Inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import {
+  Directive,
+  Input,
+  HostListener,
+  Inject,
+  PLATFORM_ID
+} from "@angular/core";
+import { isPlatformBrowser } from "@angular/common";
 
-@Directive({ selector: '[scrollTo]' })
+@Directive({ selector: "[appScrollTo]" })
 export class ScrollToDirective {
-
   @Input() elementId: string;
 
-  @HostListener('click') onClick() {
+  @HostListener("click") onClick() {
     this.scrollTo(this.elementId);
   }
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
+  constructor(@Inject(PLATFORM_ID) private platformId: object) {}
 
-  scrollTo(elId: string) {
+  private scrollTo(elId: string) {
     if (isPlatformBrowser(this.platformId)) {
-
-      let element = document.getElementById(elId);
-      let startY = this.currentYPosition();
-      let stopY = this.elmYPosition(element);
-      let distance = stopY > startY ? stopY - startY : startY - stopY;
+      const element = document.getElementById(elId);
+      const startY = this.currentYPosition();
+      const stopY = this.elmYPosition(element);
+      const distance = stopY > startY ? stopY - startY : startY - stopY;
       if (distance < 100) {
-          scrollTo(0, stopY); return;
+        scrollTo(0, stopY);
+        return;
       }
-      let speed = 25;
-      let step = Math.round(distance / 25);
+      const speed = 25;
+      const step = Math.round(distance / 25);
       let leapY = stopY > startY ? startY + step : startY - step;
       let timer = 0;
       if (stopY > startY) {
-          for ( let i=startY; i<stopY; i+=step ) {
-              setTimeout("window.scrollTo(0, "+leapY+")", timer * speed);
-              leapY += step; if (leapY > stopY) leapY = stopY; timer++;
-          } return;
+        for (let i = startY; i < stopY; i += step) {
+          setTimeout("window.scrollTo(0, " + leapY + ")", timer * speed);
+          leapY += step;
+          if (leapY > stopY) {
+            leapY = stopY;
+          }
+          timer++;
+        }
+        return;
       }
-      for ( let i=startY; i>stopY; i-=step ) {
-          setTimeout("window.scrollTo(0, "+leapY+")", timer * speed);
-          leapY -= step; if (leapY < stopY) leapY = stopY; timer++;
+      for (let i = startY; i > stopY; i -= step) {
+        setTimeout("window.scrollTo(0, " + leapY + ")", timer * speed);
+        leapY -= step;
+        if (leapY < stopY) {
+          leapY = stopY;
+        }
+        timer++;
       }
     }
   }
 
-  currentYPosition() {
+  private currentYPosition() {
     if (isPlatformBrowser(this.platformId)) {
       // Firefox, Chrome, Opera, Safari
-      if (self.pageYOffset) return self.pageYOffset;
+      if (self.pageYOffset) {
+        return self.pageYOffset;
+      }
       // Internet Explorer 6 - standards mode
-      if (document.documentElement && document.documentElement.scrollTop)
-          return document.documentElement.scrollTop;
+      if (document.documentElement && document.documentElement.scrollTop) {
+        return document.documentElement.scrollTop;
+      }
       // Internet Explorer 6, 7 and 8
-      if (document.body.scrollTop) return document.body.scrollTop;
+      if (document.body.scrollTop) {
+        return document.body.scrollTop;
+      }
       return 0;
     }
   }
 
-  elmYPosition(el: HTMLElement) {
+  private elmYPosition(el: HTMLElement) {
     if (isPlatformBrowser(this.platformId)) {
-      let elm = el;
+      const elm = el;
       let y = elm.offsetTop;
-      let node:any = elm;
-      while (node.offsetParent && node.offsetParent != document.body) {
-          node = node.offsetParent;
-          y += node.offsetTop;
-      } return y;
+      let node: any = elm;
+      while (node.offsetParent && node.offsetParent !== document.body) {
+        node = node.offsetParent;
+        y += node.offsetTop;
+      }
+      return y;
     }
   }
 }

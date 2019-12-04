@@ -10,6 +10,7 @@ import { AboutComponent } from "./about/about.component";
 import { SkillsComponent } from "./skills/skills.component";
 import { WorkComponent } from "./work/work.component";
 import { ContactComponent } from "./contact/contact.component";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -24,7 +25,9 @@ import { ContactComponent } from "./contact/contact.component";
     BrowserModule.withServerTransition({ appId: "serverApp" }),
     BrowserAnimationsModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

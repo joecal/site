@@ -6,17 +6,45 @@ import {
   HostListener
 } from "@angular/core";
 import { isPlatformBrowser } from "@angular/common";
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  FormGroupDirective
+} from "@angular/forms";
+import { growShrink } from "src/shared/grow.shrink";
+import { greyscale } from "src/shared/greyscale";
 
 @Component({
   selector: "app-contact",
   templateUrl: "./contact.component.html",
-  styleUrls: ["./contact.component.scss"]
+  styleUrls: ["./contact.component.scss"],
+  animations: [growShrink, greyscale]
 })
 export class ContactComponent implements OnInit {
   h1HeaderFontSize: string;
-  submitted: boolean = false;
+  submitted = false;
+  msgStatus: string;
+  cardFontSize: string;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  contactForm: FormGroup = this.formBuilder.group({
+    name: ["", [Validators.required]],
+    email: [
+      "",
+      [
+        Validators.required,
+        Validators.email,
+        Validators.minLength(2),
+        Validators.maxLength(50)
+      ]
+    ],
+    message: ["", [Validators.required]]
+  });
+
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: object,
+    private formBuilder: FormBuilder
+  ) {}
 
   ngOnInit() {
     this.onWindowResize();
@@ -25,15 +53,17 @@ export class ContactComponent implements OnInit {
   @HostListener("window:resize", [])
   onWindowResize() {
     if (isPlatformBrowser(this.platformId)) {
-      let width = window.innerWidth;
-      let height = window.innerHeight;
-      let orientation = width > height ? "landscape" : "portrait";
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      const orientation = width > height ? "landscape" : "portrait";
 
       this.h1HeaderFontSize = orientation === "landscape" ? "6vh" : "6vw";
+      this.cardFontSize = orientation === "landscape" ? "4vh" : "4vw";
     }
   }
 
-  onSubmitted(event) {
-    this.submitted = event;
+  submit(form: FormGroup, formDirective: FormGroupDirective) {
+    // if (form.valid) {
+    // }
   }
 }

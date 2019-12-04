@@ -1,42 +1,17 @@
-<mat-grid-list cols="10" rowHeight="fit" [@opacity]="opacity">
-  <mat-grid-tile
-    #home
-    [style.opacity]="homeOpacity"
-    [colspan]="10"
-    [rowspan]="2"
-  >
+<div class="app" [@opacity]="opacity">
+  <div #home [style.opacity]="homeOpacity">
     <app-home></app-home>
-  </mat-grid-tile>
-  <mat-grid-tile
-    #about
-    [style.opacity]="homeOpacity"
-    [colspan]="10"
-    [rowspan]="2"
-  >
+  </div>
+  <div #about [style.opacity]="aboutOpacity">
     <app-about></app-about>
-  </mat-grid-tile>
-  <mat-grid-tile
-    #skills
-    [style.opacity]="homeOpacity"
-    [colspan]="10"
-    [rowspan]="2"
-  >
+  </div>
+  <div #skills [style.opacity]="skillsOpacity">
     <app-skills></app-skills>
-  </mat-grid-tile>
-  <mat-grid-tile
-    #work
-    [style.opacity]="homeOpacity"
-    [colspan]="10"
-    [rowspan]="2"
-  >
+  </div>
+  <div #work [style.opacity]="workOpacity">
     <app-work></app-work>
-  </mat-grid-tile>
-  <mat-grid-tile
-    #contact
-    [style.opacity]="homeOpacity"
-    [colspan]="10"
-    [rowspan]="2"
-  >
+  </div>
+  <div #contact [style.opacity]="contactOpacity">
     <app-contact></app-contact>
-  </mat-grid-tile>
-</mat-grid-list>
+  </div>
+</div>

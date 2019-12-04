@@ -5,11 +5,17 @@
   border-bottom: 1px solid #ccc;
 }
 
-#iconContainer {
-  text-align: center;
-}
-
 i {
   margin: 0.2em;
   text-shadow: 0 3px 5px #ccc;
+}
+
+.skills {
+  height: 100vh;
+  display: flex;
+}
+
+.skills-icons {
+  display: flex;
+  align-items: center;
 }

@@ -17,7 +17,7 @@ import { growShrink } from "src/shared/grow.shrink";
 export class HomeComponent implements OnInit {
   h1FontSize: string;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor(@Inject(PLATFORM_ID) private platformId: object) {}
 
   ngOnInit() {
     this.onWindowResize();
@@ -26,9 +26,9 @@ export class HomeComponent implements OnInit {
   @HostListener("window:resize", [])
   onWindowResize() {
     if (isPlatformBrowser(this.platformId)) {
-      let width = window.innerWidth;
-      let height = window.innerHeight;
-      let orientation = width > height ? "landscape" : "portrait";
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      const orientation = width > height ? "landscape" : "portrait";
 
       this.h1FontSize = orientation === "landscape" ? "7vh" : "7vw";
     }

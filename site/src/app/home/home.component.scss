@@ -1,7 +1,26 @@
-h1 {
-  margin: 0.5em 0em;
+.home {
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
 }
 
-#jc {
-  font-weight: 300;
+.home-left {
+  margin: 1em 0 1em 1em;
+}
+
+.home-left,
+.home-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.home-center {
+  display: flex;
+  align-items: center;
+}
+
+.home-right {
+  margin: 1em 1em 1em 0;
 }
