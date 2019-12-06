@@ -45,7 +45,7 @@
               <span [style.font-size]="cardFontSize">SUBMIT</span>
             </button>
 
-            <div *ngIf="msgStatus !== undefined" id="msgStatus">
+            <div *ngIf="msgStatus" id="msgStatus">
               {{ msgStatus }}
             </div>
             <button type="button" mat-button (click)="contactForm.reset()">

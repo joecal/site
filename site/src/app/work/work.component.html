@@ -25,7 +25,11 @@
           *ngIf="card.live"
           >LIVE</a
         >
-        <a mat-button href="{{ card.repo }}" [style.font-size]="cardFontSize"
+        <a
+          mat-button
+          href="{{ card.repo }}"
+          [style.font-size]="cardFontSize"
+          *ngIf="card.repo"
           >REPO</a
         >
       </div>

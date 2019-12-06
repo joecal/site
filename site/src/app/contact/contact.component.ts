@@ -14,6 +14,7 @@ import {
 } from "@angular/forms";
 import { growShrink } from "src/shared/grow.shrink";
 import { greyscale } from "src/shared/greyscale";
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: "app-contact",
@@ -43,7 +44,8 @@ export class ContactComponent implements OnInit {
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: object,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private http: HttpClient
   ) {}
 
   ngOnInit() {
@@ -63,7 +65,13 @@ export class ContactComponent implements OnInit {
   }
 
   submit(form: FormGroup, formDirective: FormGroupDirective) {
-    // if (form.valid) {
-    // }
+    if (form.valid) {
+      form.reset();
+      this.http
+        .post("http://localhost:4000/mail", form.value)
+        .subscribe((data: any) => {
+          console.log("data: ", data);
+        });
+    }
   }
 }

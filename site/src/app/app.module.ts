@@ -11,6 +11,7 @@ import { SkillsComponent } from "./skills/skills.component";
 import { WorkComponent } from "./work/work.component";
 import { ContactComponent } from "./contact/contact.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     AppRoutingModule,
     SharedModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

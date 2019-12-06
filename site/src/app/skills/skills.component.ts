@@ -17,11 +17,10 @@ import { greyscale } from "src/shared/greyscale";
 })
 export class SkillsComponent implements OnInit {
   h1HeaderFontSize: string;
-  iconContainerPad: string;
   iconFontSize: string;
 
   icons: any = [
-    "devicon-angularjs-plain-wordmark colored colored",
+    "devicon-angularjs-plain colored",
     "devicon-android-plain-wordmark colored",
     "devicon-amazonwebservices-plain-wordmark colored",
     "devicon-apple-original colored",
@@ -43,19 +42,19 @@ export class SkillsComponent implements OnInit {
     "devicon-less-plain-wordmark colored",
     "devicon-linux-plain colored",
     "devicon-mongodb-plain-wordmark colored",
+    "devicon-nginx-original colored",
     "devicon-nodejs-plain-wordmark colored",
+    "devicon-nodewebkit-plain-wordmark colored",
     "devicon-photoshop-line colored",
-    "devicon-php-plain colored",
     "devicon-postgresql-plain-wordmark colored",
     "devicon-python-plain-wordmark colored",
-    "devicon-rails-plain-wordmark colored",
     "devicon-react-original-wordmark colored",
-    "devicon-ruby-plain-wordmark colored",
     "devicon-sass-original colored",
     "devicon-slack-plain-wordmark colored",
     "devicon-ssh-plain-wordmark colored",
     "devicon-typescript-plain colored",
-    "devicon-ubuntu-plain-wordmark colored"
+    "devicon-ubuntu-plain-wordmark colored",
+    "devicon-visualstudio-plain-wordmark"
   ];
 
   constructor(@Inject(PLATFORM_ID) private platformId: object) {}
@@ -72,7 +71,6 @@ export class SkillsComponent implements OnInit {
       const orientation = width > height ? "landscape" : "portrait";
 
       this.h1HeaderFontSize = orientation === "landscape" ? "6vh" : "6vw";
-      this.iconContainerPad = orientation === "landscape" ? "3em" : "4em";
       this.iconFontSize = orientation === "landscape" ? "11vh" : "11vw";
     }
   }

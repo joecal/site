@@ -19,6 +19,7 @@ import {
 import { Meta, Title } from "@angular/platform-browser";
 import { isPlatformBrowser } from "@angular/common";
 import * as Trianglify from "trianglify";
+declare const TWEEN;
 
 @Component({
   selector: "app-root",
@@ -32,7 +33,7 @@ import * as Trianglify from "trianglify";
   styleUrls: ["./app.component.scss"]
 })
 export class AppComponent implements OnInit, AfterViewInit {
-  @ViewChildren("home,about,skills,work,contact") children: QueryList<
+  @ViewChildren("app,home,about,skills,work,contact") children: QueryList<
     ElementRef
   >;
   opacity: string;
@@ -61,28 +62,31 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId)) {
-      const pattern = Trianglify({
-        width: document.body.clientWidth,
-        height: document.body.clientHeight,
-        variance: "1",
-        cell_size: 200,
-        seed: "muzbg",
-        x_colors: [
-          "#ffffff",
-          "#ffffff",
-          "#fdfdfd",
-          "#fcfcfc",
-          "#fbfbfb",
-          "#fcfcfc",
-          "#fdfdfd",
-          "#ffffff",
-          "#ffffff"
-        ],
-        y_colors: "match_x",
-        color_space: "rgb"
-      });
+      const childrenList = this.children.toArray();
+      const appElement = childrenList[0].nativeElement;
+      // TODO
+      // const pattern = Trianglify({
+      //   width: appElement.clientWidth,
+      //   height: appElement.clientHeight,
+      //   variance: "1",
+      //   cell_size: 200,
+      //   x_colors: [
+      //     "#FFFFFF",
+      //     "#fafafa",
+      //     "#e0e0e0",
+      //     "#fafafa",
+      //     "#e0e0e0",
+      //     "#fafafa",
+      //     "#e0e0e0",
+      //     "#fafafa",
+      //     "#FFFFFF"
+      //   ],
+      //   seed: "muzbg",
+      //   y_colors: "match_x",
+      //   color_space: "rgb"
+      // });
 
-      document.body.style["background-image"] = "url(" + pattern.png() + ")";
+      // document.body.style["background-image"] = "url(" + pattern.png() + ")";
 
       setTimeout(() => {
         this.opacity = "show";
@@ -112,11 +116,11 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   private getElements() {
     const childrenList = this.children.toArray();
-    const homeElement = childrenList[0].nativeElement;
-    const aboutElement = childrenList[1].nativeElement;
-    const skillsElement = childrenList[2].nativeElement;
-    const workElement = childrenList[3].nativeElement;
-    const contactElement = childrenList[4].nativeElement;
+    const homeElement = childrenList[1].nativeElement;
+    const aboutElement = childrenList[2].nativeElement;
+    const skillsElement = childrenList[3].nativeElement;
+    const workElement = childrenList[4].nativeElement;
+    const contactElement = childrenList[5].nativeElement;
 
     return {
       home: homeElement,
