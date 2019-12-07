@@ -15,6 +15,9 @@ import {
 import { growShrink } from "src/shared/grow.shrink";
 import { greyscale } from "src/shared/greyscale";
 import { HttpClient } from "@angular/common/http";
+import { throwError, Observable } from "rxjs";
+import { catchError } from "rxjs/operators";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: "app-contact",
@@ -24,9 +27,9 @@ import { HttpClient } from "@angular/common/http";
 })
 export class ContactComponent implements OnInit {
   h1HeaderFontSize: string;
-  submitted = false;
   msgStatus: string;
   cardFontSize: string;
+  loading: boolean;
 
   contactForm: FormGroup = this.formBuilder.group({
     name: ["", [Validators.required]],
@@ -45,7 +48,8 @@ export class ContactComponent implements OnInit {
   constructor(
     @Inject(PLATFORM_ID) private platformId: object,
     private formBuilder: FormBuilder,
-    private http: HttpClient
+    private http: HttpClient,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
@@ -66,12 +70,44 @@ export class ContactComponent implements OnInit {
 
   submit(form: FormGroup, formDirective: FormGroupDirective) {
     if (form.valid) {
-      form.reset();
+      this.loading = true;
       this.http
-        .post("http://localhost:4000/mail", form.value)
+        .post("https://joecal.dev/api/mail", form.value)
+        .pipe(catchError(this.handleError()))
         .subscribe((data: any) => {
-          console.log("data: ", data);
+          this.loading = false;
+          if (data.json().success) {
+            this.msgStatus = data.json().success;
+            this.snackBar.open("Message Sent!", "Close", {
+              duration: 2000
+            });
+          } else if (data.json().error) {
+            this.msgStatus = data.json().error;
+            this.clearMsgStatus();
+          } else {
+            this.msgStatus = "Oops, something broke!";
+            this.clearMsgStatus();
+          }
         });
+      formDirective.resetForm();
+      form.reset();
     }
+  }
+
+  private handleError<T>() {
+    return (error: any): Observable<T> => {
+      this.msgStatus = error.message;
+      this.clearMsgStatus();
+      if (this.loading) {
+        this.loading = false;
+      }
+      return throwError(error);
+    };
+  }
+
+  private clearMsgStatus() {
+    setTimeout(() => {
+      this.msgStatus = null;
+    }, 5000);
   }
 }

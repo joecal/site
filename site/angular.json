@@ -44,7 +44,7 @@
             "aot": false,
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "src/custom-theme.scss",
               "src/styles.scss",
               "./node_modules/lato-font/css/lato-font.min.css"
             ],

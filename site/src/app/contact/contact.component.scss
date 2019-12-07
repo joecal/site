@@ -13,10 +13,14 @@ mat-card {
 
 mat-form-field {
   width: 100%;
+  font-family: "Lato", sans-serif;
 }
 
 button {
   font-weight: 100;
+  width: 100%;
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
 }
 
 .contact {
@@ -37,7 +41,8 @@ button {
 
 .contact-form-actions {
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
 }
 
 .contact-links {
@@ -53,4 +58,14 @@ button {
   max-width: 20%;
   -webkit-filter: drop-shadow(0 1px 3px #ccc) grayscale(100%);
   filter: drop-shadow(0 1px 3px #ccc) grayscale(100%);
+}
+
+.contact-msg-status {
+  color: red;
+  font-family: "Lato", sans-serif;
+  margin-top: 0.5em;
+}
+
+.mat-simple-snackbar {
+  justify-content: center;
 }
