@@ -1,0 +1,104 @@
+<div class="contact">
+  <div>
+    <h1 id="contact" [style.font-size]="h1HeaderFontSize">CONTACT</h1>
+  </div>
+  <div class="contact-content">
+    <div class="contact-sub-content">
+      <mat-card>
+        <form
+          [formGroup]="contactForm"
+          #contactFormDirective="ngForm"
+          (ngSubmit)="submit(contactForm, contactFormDirective)"
+        >
+          <mat-form-field>
+            <input
+              type="text"
+              matInput
+              placeholder="Name"
+              formControlName="name"
+            />
+          </mat-form-field>
+
+          <mat-form-field>
+            <input
+              type="email"
+              matInput
+              placeholder="Email"
+              formControlName="email"
+            />
+          </mat-form-field>
+
+          <mat-form-field>
+            <textarea
+              type="text"
+              matInput
+              placeholder="Message"
+              formControlName="message"
+            >
+            </textarea>
+          </mat-form-field>
+
+          <div class="contact-form-actions">
+            <button type="submit" mat-button>
+              <!-- <mat-progress-spinner *ngIf="isLoading" color="primary" mode="indeterminate" value="50">
+                                          </mat-progress-spinner> -->
+              <span [style.font-size]="cardFontSize">SUBMIT</span>
+            </button>
+
+            <div *ngIf="msgStatus" id="msgStatus">
+              {{ msgStatus }}
+            </div>
+            <button type="button" mat-button (click)="contactForm.reset()">
+              <!-- <mat-progress-spinner *ngIf="isLoading" color="primary" mode="indeterminate" value="50">
+                                                                                  </mat-progress-spinner> -->
+              <span [style.font-size]="cardFontSize">CANCEL</span>
+            </button>
+          </div>
+        </form>
+      </mat-card>
+      <mat-progress-bar
+        *ngIf="submitted"
+        mode="indeterminate"
+      ></mat-progress-bar>
+
+      <div class="contact-links">
+        <div class="contact-link">
+          <a href="https://github.com/joecal">
+            <img
+              src="assets/gh.png"
+              #github
+              [@growShrink]="github.scale"
+              appGrowShrink
+              [@greyscale]="github.greyscale"
+              appGreyscale
+            />
+          </a>
+        </div>
+        <div class="contact-link">
+          <a href="https://linkedin.com/in/joecalvillo">
+            <img
+              src="assets/li.png"
+              #linkedin
+              [@growShrink]="linkedin.scale"
+              appGrowShrink
+              [@greyscale]="linkedin.greyscale"
+              appGreyscale
+            />
+          </a>
+        </div>
+        <div class="contact-link">
+          <a href="https://www.facebook.com/j.calvillo.757">
+            <img
+              src="assets/f.png"
+              #facebook
+              [@growShrink]="facebook.scale"
+              appGrowShrink
+              [@greyscale]="facebook.greyscale"
+              appGreyscale
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+#skills {
+  font-weight: 300;
+  margin: 0.2em;
+  padding-top: 0.3em;
+  border-bottom: 1px solid #ccc;
+}
+
+i {
+  margin: 0.2em;
+  text-shadow: 0 3px 5px #ccc;
+}
+
+.skills {
+  height: 100vh;
+  display: flex;
+}
+
+.skills-icons {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}

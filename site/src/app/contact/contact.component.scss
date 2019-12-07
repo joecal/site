@@ -1,0 +1,56 @@
+#contact {
+  font-weight: 300;
+  margin: 0.2em;
+  padding-top: 0.3em;
+  border-bottom: 1px solid #ccc;
+}
+
+mat-card {
+  padding: 12px 24px;
+  width: 100%;
+  margin-bottom: 3%;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+button {
+  font-weight: 100;
+}
+
+.contact {
+  height: 100vh;
+  display: flex;
+}
+
+.contact-content {
+  display: flex;
+  align-items: center;
+  margin-top: 15%;
+  margin-left: 5%;
+}
+
+.contact-sub-content {
+  max-width: 75%;
+}
+
+.contact-form-actions {
+  display: flex;
+  justify-content: space-around;
+}
+
+.contact-links {
+  display: flex;
+}
+
+.contact-link {
+  width: 33%;
+  text-align: center;
+}
+
+.contact-links img {
+  max-width: 20%;
+  -webkit-filter: drop-shadow(0 1px 3px #ccc) grayscale(100%);
+  filter: drop-shadow(0 1px 3px #ccc) grayscale(100%);
+}

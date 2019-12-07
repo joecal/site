@@ -1,0 +1,37 @@
+#work {
+  font-weight: 300;
+  margin: 0.2em;
+  padding-top: 0.3em;
+  border-bottom: 1px solid #ccc;
+}
+
+mat-card {
+  margin: 0.8em;
+  padding: 0;
+}
+
+a {
+  font-weight: 100;
+}
+
+.work {
+  height: 100vh;
+  display: flex;
+}
+
+.work-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.work-img-container {
+  max-height: 13em;
+  overflow: hidden;
+}
+
+.work-actions-container {
+  display: flex;
+  justify-content: space-around;
+}
