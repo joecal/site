@@ -57,6 +57,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    // TODO
     // this.onWindowResize(); // TODO
   }
 
@@ -64,29 +65,28 @@ export class AppComponent implements OnInit, AfterViewInit {
     if (isPlatformBrowser(this.platformId)) {
       const childrenList = this.children.toArray();
       const appElement = childrenList[0].nativeElement;
-      // TODO
-      // const pattern = Trianglify({
-      //   width: appElement.clientWidth,
-      //   height: appElement.clientHeight,
-      //   variance: "1",
-      //   cell_size: 200,
-      //   x_colors: [
-      //     "#FFFFFF",
-      //     "#fafafa",
-      //     "#e0e0e0",
-      //     "#fafafa",
-      //     "#e0e0e0",
-      //     "#fafafa",
-      //     "#e0e0e0",
-      //     "#fafafa",
-      //     "#FFFFFF"
-      //   ],
-      //   seed: "muzbg",
-      //   y_colors: "match_x",
-      //   color_space: "rgb"
-      // });
+      const pattern = Trianglify({
+        width: appElement.clientWidth,
+        height: appElement.clientHeight,
+        variance: "1",
+        cell_size: 200,
+        x_colors: [
+          "#FFFFFF",
+          "#fafafa",
+          "#e0e0e0",
+          "#fafafa",
+          "#e0e0e0",
+          "#fafafa",
+          "#e0e0e0",
+          "#fafafa",
+          "#FFFFFF"
+        ],
+        seed: "muzbg",
+        y_colors: "match_x",
+        color_space: "rgb"
+      });
 
-      // document.body.style["background-image"] = "url(" + pattern.png() + ")";
+      document.body.style["background-image"] = "url(" + pattern.png() + ")";
 
       setTimeout(() => {
         this.opacity = "show";
