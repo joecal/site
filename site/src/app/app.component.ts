@@ -19,7 +19,6 @@ import {
 import { Meta, Title } from "@angular/platform-browser";
 import { isPlatformBrowser } from "@angular/common";
 import * as Trianglify from "trianglify";
-declare const TWEEN;
 
 @Component({
   selector: "app-root",
