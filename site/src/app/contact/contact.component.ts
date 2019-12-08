@@ -72,17 +72,16 @@ export class ContactComponent implements OnInit {
     if (form.valid) {
       this.loading = true;
       this.http
-        .post("https://joecal.dev/api", form.value)
+        .post("https://joecal.dev/mail", form.value)
         .pipe(catchError(this.handleError()))
         .subscribe((data: any) => {
           this.loading = false;
-          if (data.json().success) {
-            this.msgStatus = data.json().success;
-            this.snackBar.open("Message Sent!", "Close", {
+          if (data.success) {
+            this.snackBar.open(data.success, "Close", {
               duration: 2000
             });
-          } else if (data.json().error) {
-            this.msgStatus = data.json().error;
+          } else if (data.error) {
+            this.msgStatus = data.error;
             this.clearMsgStatus();
           } else {
             this.msgStatus = "Oops, something broke!";
