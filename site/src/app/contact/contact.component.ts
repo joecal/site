@@ -72,7 +72,7 @@ export class ContactComponent implements OnInit {
     if (form.valid) {
       this.loading = true;
       this.http
-        .post("https://joecal.dev/api/mail", form.value)
+        .post("https://joecal.dev/api", form.value)
         .pipe(catchError(this.handleError()))
         .subscribe((data: any) => {
           this.loading = false;
