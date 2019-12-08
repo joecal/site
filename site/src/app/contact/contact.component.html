@@ -4,6 +4,13 @@
   </div>
   <div class="contact-content">
     <div class="contact-sub-content">
+      <mat-progress-bar
+        *ngIf="loading"
+        color="primary"
+        mode="indeterminate"
+        value="50"
+      >
+      </mat-progress-bar>
       <mat-card>
         <form
           [formGroup]="contactForm"
@@ -16,6 +23,7 @@
               matInput
               placeholder="Name"
               formControlName="name"
+              required
             />
           </mat-form-field>
 
@@ -25,6 +33,7 @@
               matInput
               placeholder="Email"
               formControlName="email"
+              required
             />
           </mat-form-field>
 
@@ -34,32 +43,26 @@
               matInput
               placeholder="Message"
               formControlName="message"
+              required
             >
             </textarea>
           </mat-form-field>
 
           <div class="contact-form-actions">
-            <button type="submit" mat-button>
-              <!-- <mat-progress-spinner *ngIf="isLoading" color="primary" mode="indeterminate" value="50">
-                                          </mat-progress-spinner> -->
-              <span [style.font-size]="cardFontSize">SUBMIT</span>
+            <button
+              type="submit"
+              mat-stroked-button
+              [disabled]="!contactForm.valid"
+            >
+              <span [style.font-size]="cardFontSize">SEND</span>
             </button>
 
-            <div *ngIf="msgStatus" id="msgStatus">
+            <div *ngIf="msgStatus" class="contact-msg-status">
               {{ msgStatus }}
             </div>
-            <button type="button" mat-button (click)="contactForm.reset()">
-              <!-- <mat-progress-spinner *ngIf="isLoading" color="primary" mode="indeterminate" value="50">
-                                                                                  </mat-progress-spinner> -->
-              <span [style.font-size]="cardFontSize">CANCEL</span>
-            </button>
           </div>
         </form>
       </mat-card>
-      <mat-progress-bar
-        *ngIf="submitted"
-        mode="indeterminate"
-      ></mat-progress-bar>
 
       <div class="contact-links">
         <div class="contact-link">
