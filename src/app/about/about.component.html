@@ -1,0 +1,24 @@
+<div class="about">
+  <div class="about-header">
+    <h1 id="about" [style.font-size]="h1HeaderFontSize">ABOUT</h1>
+  </div>
+  <div class="about-content">
+    <div
+      class="about-portrait"
+      [style.max-width]="portraitMaxWidth"
+      id="portrait"
+      #portrait
+      [@growShrink]="portrait.scale"
+      appGrowShrink
+    >
+      <img src="assets/me.png" />
+    </div>
+    <p [style.font-size]="pFontSize">
+      I have a passion for transforming web content ideas and concepts into
+      valuable, tangible results. Eager to apply my front-end, back-end, and
+      team skills to solve problems and enhance the user experience.
+      Continuously learning new and existing technologies and techniques to
+      maintain high quality programming performance.
+    </p>
+  </div>
+</div>
