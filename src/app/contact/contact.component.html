@@ -1,9 +1,19 @@
 <div class="contact">
-  <div>
-    <h1 id="contact" [style.font-size]="h1HeaderFontSize">CONTACT</h1>
+  <div id="contact">
+    <div class="contact-header">
+      <h1 [style.font-size]="h1HeaderFontSize">CONTACT</h1>
+    </div>
   </div>
   <div class="contact-content">
     <div class="contact-sub-content">
+      <a
+        class="contact-resume"
+        href="https://joecal.dev/resume"
+        mat-stroked-button
+      >
+        <span [style.font-size]="cardFontSize">RESUME</span>
+      </a>
+
       <mat-progress-bar
         *ngIf="loading"
         color="primary"
@@ -66,7 +76,7 @@
 
       <div class="contact-links">
         <div class="contact-link">
-          <a href="https://github.com/joecal">
+          <a href="https://github.com/joecal" target="_blank">
             <img
               src="assets/gh.png"
               #github
@@ -78,7 +88,7 @@
           </a>
         </div>
         <div class="contact-link">
-          <a href="https://linkedin.com/in/joecalvillo">
+          <a href="https://linkedin.com/in/joecalvillo" target="_blank">
             <img
               src="assets/li.png"
               #linkedin
@@ -90,7 +100,7 @@
           </a>
         </div>
         <div class="contact-link">
-          <a href="https://www.facebook.com/j.calvillo.757">
+          <a href="https://www.facebook.com/j.calvillo.757" target="_blank">
             <img
               src="assets/f.png"
               #facebook

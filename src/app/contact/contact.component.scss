@@ -1,14 +1,11 @@
 #contact {
-  font-weight: 300;
-  margin: 0.2em;
-  padding-top: 0.3em;
-  border-bottom: 1px solid #ccc;
+  padding: 0.5em 0 0 0.5em;
 }
 
-mat-card {
-  padding: 12px 24px;
-  width: 100%;
-  margin-bottom: 3%;
+a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 mat-form-field {
@@ -26,17 +23,31 @@ button {
 .contact {
   height: 100vh;
   display: flex;
+  flex-direction: column;
+}
+
+.contact-header {
+  display: inline-block;
+  font-weight: 300;
+  border-bottom: 1px solid #ccc;
 }
 
 .contact-content {
   display: flex;
-  align-items: center;
-  margin-top: 15%;
-  margin-left: 5%;
+  align-items: flex-end;
+  justify-content: center;
+  height: 100%;
 }
 
 .contact-sub-content {
   max-width: 75%;
+}
+
+.contact-resume {
+  font-weight: 300;
+  font-family: "Lato", sans-serif;
+  margin-bottom: 4em;
+  background-color: white;
 }
 
 .contact-form-actions {
@@ -47,11 +58,12 @@ button {
 
 .contact-links {
   display: flex;
+  margin: 1em 0 4em 0;
 }
 
 .contact-link {
+  display: flex;
   width: 33%;
-  text-align: center;
 }
 
 .contact-links img {

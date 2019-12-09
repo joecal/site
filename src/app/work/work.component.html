@@ -1,16 +1,13 @@
 <div class="work">
-  <div>
-    <h1 id="work" [style.font-size]="h1HeaderFontSize">WORK</h1>
+  <div id="work">
+    <div class="work-header">
+      <h1 [style.font-size]="h1HeaderFontSize">WORK</h1>
+    </div>
   </div>
   <div class="work-content">
-    <mat-card
-      *ngFor="let card of cards"
-      [style.max-height]="cardMaxHeight"
-      [style.max-width]="cardMaxWidth"
-    >
+    <mat-card *ngFor="let card of cards" [style.max-width]="cardMaxWidth">
       <div class="work-img-container">
         <img
-          [style.max-width]="cardMaxWidth"
           src="{{ card.img }}"
           #img
           [@growShrink]="img.scale"
@@ -19,14 +16,15 @@
       </div>
       <div class="work-actions-container">
         <a
-          mat-button
+          mat-stroked-button
           href="{{ card.live }}"
           [style.font-size]="cardFontSize"
           *ngIf="card.live"
+          target="_blank"
           >LIVE</a
         >
         <a
-          mat-button
+          mat-stroked-button
           href="{{ card.repo }}"
           [style.font-size]="cardFontSize"
           *ngIf="card.repo"
