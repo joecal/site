@@ -33,7 +33,7 @@ export class WorkComponent implements OnInit {
       img: "assets/site.png",
       description:
         "This site is an app that features a portfolio of my some of my work. Programmed with Angulr 4, Angular Material, Node and Express.",
-      live: "https://joecal.herokuapp.com",
+      live: "https://joecal.dev",
       repo: "https://github.com/joecal/site"
     },
     {
@@ -50,7 +50,7 @@ export class WorkComponent implements OnInit {
       description:
         "Slips 2.0 is a question and answer app that features quiz questions related to General Assembly's curriculum programmed with Ruby on Rails, HTML and Bootstrap CSS.",
       // live: "https://slips2.herokuapp.com",
-      repo: "https://github.com/joecal"
+      repo: "https://github.com/joecal/slips2"
     },
     {
       title: "MEAN-Lab",
